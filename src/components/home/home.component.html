@@ -1,0 +1,30 @@
+<div class="welcome">
+    <h3><span>Bienvenue</span> dans ma partothèque !</h3>
+    <p>Vous trouverez sur ce site des dizaines d'arrangements pour différents ensembles allant du duo à l'orchestre symphonique.</p>
+    <p>Vous pouvez écouter chaque morceau et consulter chaque partition sur la page qui lui est dédiée.</p>
+    <p>Tous ces arrangements sont disponibles <strong>gratuitement</strong>, et vous êtes libre d'en faire l'usage que vous voulez.<br/>N'hésitez pas à me tenir au courant : je suis toujours ravi d'apprendre combien mes partitions voyagent !</p>
+    <p>Pour demander l'arrangement d'un morceau en particulier, la transposition d'une partition existante, ou juste pour faire coucou, je vous invite à consulter la <a routerLink="/contact">page de contact</a>.</p>
+</div>
+<div class="news">
+    <div *ngFor="let n of latestNews | async">
+        <div class="news-header">
+            <div class="news-date">{{n.date | datefr: 'd MMMM y'}}</div>
+            <h4 class="news-title" [innerHTML]="n.title | safeHtml"></h4>
+        </div>
+        <div class="news-content" [innerHTML]="n.content | safeHtml"></div>
+    </div>
+</div>
+<div class="latest-scores">
+    <h3>Derniers arrangements</h3>
+    <div class="latest-block">
+        <a *ngFor="let score of latestScores | async" [routerLink]="'/score/' + score.tag">
+            <div class="score-bg" [style.background-image]="'url(' + getBgImage(score) + ')'"></div>
+            <span class="title">{{score.title}}</span>
+            <span class="from" *ngIf="score.from && score.from != score.title">{{score.from}}</span>
+            <div class="parts">
+                <span class="band" *ngIf="score.band">{{score.band.title}}</span>
+                <instrument-icons [parts]="score.parts"></instrument-icons>
+            </div>
+        </a>
+    </div>
+</div>

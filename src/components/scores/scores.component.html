@@ -1,0 +1,64 @@
+<div class="img-panel" *ngIf="imageUrl" [style.background-image]="'url(' + imageUrl + ')'">
+    <div>
+        <h3>{{pageTitle}}</h3>
+    </div>
+</div>
+<form *ngIf="searching">
+    <label>
+        <span *ngIf="!title">Titre</span>
+        <input type="text" [(ngModel)]="title" name="title" (keyup)="search()" />
+    </label>
+    <label>
+        <span *ngIf="!bandTag">Formation</span>
+        <select *ngIf="bands" name="band" [(ngModel)]="bandTag" (change)="changeBand()">
+            <option></option>
+            <option *ngFor="let band of bands" [value]="band.tag">{{band.title}}</option>
+        </select>
+    </label>
+    <div class="composer">
+        <label>
+            <span *ngIf="!composer">Compositeur</span>
+            <select name="composer" [(ngModel)]="composer" (change)="search()">
+                <option></option>
+                <option *ngFor="let comp of composers" [value]="comp.name">{{comp.name}}</option>
+            </select>
+        </label>
+    </div>
+    <div *ngIf="instruments" class="instrument-picker">
+        <label>
+            <span>Instruments</span>
+            <select name="instrument-picker" #instrumentPicker (change)="pickInstrument($event, instrumentPicker.value)">
+                <option></option>
+                <option *ngFor="let instr of instruments" [value]="instr | json">{{instr.instrumentName}}</option>
+            </select>
+        </label>
+        <instrument-icons
+            *ngIf="pickedInstruments"
+            [parts]="pickedInstruments"
+            [clickable]="true"
+            [full-score]="false"
+            (onInstrumentClicked)="unpickInstrument($event)"></instrument-icons>
+    </div>
+</form>
+<div *ngIf="results" class="search-results">
+    <div class="results-title" *ngIf="searching">{{results.length + ' résultat' + (results.length > 1 ? 's' : '')}}</div>
+    <ng-container *ngFor="let r of results">
+        <div class="scholar-year" *ngIf="yeared && getScholarYear(r)"><span>{{year}}</span></div>
+        <a [routerLink]="'/score/' + r.tag">
+            <fav-star *ngIf="r.note == 5"></fav-star>
+            <div class="score-header">
+                <div class="score-header-bg" [style.background-image]="'url(' + getImageUrl(r) + ')'"></div>
+                <div class="titles">
+                    <h3>{{r.title}}</h3>
+                    <h4>{{r.from}}</h4>
+                </div>
+            </div>
+            <div class="band-info" *ngIf="!bandTag">{{r.band.title}}</div>
+            <div class="band-info" *ngIf="bandTag">{{r.parts.length}} parts</div>
+            <div class="mark-date">
+                <span class="date">{{r.created | datefr: 'MMMM y'}}</span>
+                <star-mark [mark]="r.note"></star-mark>
+            </div>
+        </a>
+    </ng-container>
+</div>

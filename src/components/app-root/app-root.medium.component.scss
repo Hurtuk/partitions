@@ -1,0 +1,25 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $medium-width) {
+    :host {
+        width: 94%;
+        max-width: $large-content-width;
+        margin: 0 auto;
+        box-shadow: 0 0 5px 0 $color-shadow;
+        overflow-x: visible;
+        overflow-y: visible;
+        min-height: 100%;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .page-content {
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+}

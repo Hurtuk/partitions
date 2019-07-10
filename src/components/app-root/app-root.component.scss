@@ -1,0 +1,49 @@
+@import '../../shared/styles/theme';
+
+:host {
+    display: block;
+    min-height: 100%;
+    background-color: $color-lightgray;
+    position: relative;
+    padding-bottom: $footer-height;
+}
+
+.page-content {
+    margin-top: $header-height;
+    padding: $mobile-padding;
+    padding-bottom: 0;
+    overflow-y: visible;
+}
+
+header,
+side-nav {
+    z-index: 100;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: $footer-height;
+    background-color: $color-gray;
+    text-align: center;
+
+    * {
+        color: $color-darkgray;
+    }
+
+    div {
+        font-size: 90%;
+    }
+
+    ul {
+        margin-top: 15px;
+    }
+
+    > * {
+        &:first-child {
+            margin-top: 20px;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<input type="button" class="open-menu" (click)="toggleSideNav()" />
+<div class="mat-panel" [class.open]="menuOpen" (click)="toggleSideNav()"></div>
+<nav>
+    <div class="quick-access">
+        <a (click)="closeAll()"[routerLink]="['/']" class="side-accueil"></a>
+        <a (click)="closeAll()" href="https://www.facebook.com/louiecinephile/" class="side-facebook"></a>
+        <a (click)="closeAll()" href="https://twitter.com/Louiecinephile" class="side-twitter"></a>
+    </div>
+    <ul class="side-content">
+        <li *ngFor="let item of menu" [class]="'menu-' + item.pathArg">
+            <a (click)="closeAll()" [routerLink]="['/scores', {band:item.pathArg}]">{{item.title}}</a>
+        </li>
+    </ul>
+    <a routerLink="/contact">Contact</a>
+</nav>

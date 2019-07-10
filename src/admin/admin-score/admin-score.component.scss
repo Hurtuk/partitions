@@ -1,0 +1,24 @@
+@import '../../shared/styles/theme';
+
+fieldset {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+
+    label {
+        display: block;
+
+        + label {
+            margin: 5px auto;
+        }
+    }
+
+    fieldset {
+        display: block;
+        width: auto;
+    }
+}
+
+.final-button {
+    display: block;
+}

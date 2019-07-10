@@ -1,0 +1,150 @@
+@import '../../shared/styles/theme';
+
+:host {
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+}
+
+.open-menu {
+    @include bgimg($img-menu, 30px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $header-height;
+    height: $header-height;
+    background-color: $color-orange;
+    cursor: pointer;
+}
+
+.mat-panel {
+    position: absolute;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: calc(100vh - #{$header-height});
+    transition: background-color .4s cubic-bezier(.25, .8, .25, 1), visibility 0s .4s;
+    cursor: pointer;
+
+    &.open {
+        visibility: visible;
+        background-color: rgba(0, 0, 0, .6);
+        transition: background-color .4s cubic-bezier(.25, .8, .25, 1);
+
+        + nav {
+            right: calc(100% - #{$side-nav-width});
+        }
+    }
+}
+
+nav {
+    position: absolute;
+    width: $side-nav-width;
+    max-width: 85%;
+    height: calc(100vh - #{$header-height});
+    background-color: $color-lightgray;
+    right: 100%;
+    transition: right .4s;
+
+    a {
+        line-height: 65px;
+        display: block;
+        padding: 0 10px;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: $color-lightgray;
+        font-weight: bold;
+    }
+
+    > a {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $color-orange;
+        border-bottom-width: 0;
+        transition: background-color .2s;
+
+        &:hover {
+            background-color: $color-darkred;
+        }
+    }
+}
+
+.quick-access {
+    text-align: center;
+    white-space: nowrap;
+    display: flex;
+
+    a {
+        flex: 1;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+
+        &.side-accueil {
+            @include bgimg($img-home, 25px);
+            background-color: $color-orange;
+        }
+
+        &.side-facebook {
+            @include bgimg($img-facebook-top, 25px);
+            background-color: $color-facebook;
+        }
+        
+        &.side-twitter {
+            @include bgimg($img-twitter-top, 25px);
+            background-color: $color-twitter;
+        }
+    }
+}
+
+.side-content {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+
+    li {
+        display: block;
+        cursor: pointer;
+        background-color: $color-lightgray;
+        border-bottom: 1px solid $color-gray;
+        transition: background-color .2s;
+
+        a {
+            color: $color-darkgray;
+            transition: color .2s;
+        }
+
+        &:hover {
+            background-color: $color-darkgray;
+
+            a {
+                color: $color-white;
+            }
+        }
+
+        &:first-child {
+            border-top: 1px solid $color-gray;
+        }
+
+        &.menu-strings {
+            @include bgimg($img-header-strings, 30px);
+            background-position: 225px 17px;
+
+            &:hover {
+                background-image: url($img-header-strings-white);
+            }
+        }
+
+        &.menu-winds {
+            @include bgimg($img-header-winds, 30px);
+            background-position: 225px 17px;
+            
+            &:hover {
+                background-image: url($img-header-winds-white);
+            }
+        }
+    }
+}

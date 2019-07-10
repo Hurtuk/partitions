@@ -1,0 +1,11 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    .open-menu {
+        display: none;
+    }
+
+    .mat-panel {
+        display: none;
+    }
+}

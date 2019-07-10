@@ -1,0 +1,17 @@
+@import '../../shared/styles/theme';
+
+$bar-height: 12px;
+
+.full-length {
+    position: relative;
+    height: $bar-height;
+    background-color: $color-beige;
+}
+
+.current-length {
+    height: $bar-height;
+    background-color: $color-orange;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

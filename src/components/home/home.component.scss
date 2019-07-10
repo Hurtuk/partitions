@@ -1,0 +1,116 @@
+@import '../../shared/styles/theme';
+
+.news {
+    max-width: 900px;
+    margin: 0 auto;
+
+    > div {
+        @include shadowed;
+        background-color: $color-beige;
+    }
+
+    .news-header {
+        background-color: $color-orange;
+        padding: 5px 10px;
+
+        .news-date {
+            font-style: italic;
+            float: right;
+            color: $color-white;
+            font-size: 90%;
+            margin-top: 2px;
+        }
+
+        .news-title {
+            font-weight: bold;
+            color: $color-white;
+            margin: 0;
+            font-size: 120%;
+        }
+    }
+
+    .news-content {
+        padding: 5px;
+    }
+
+    p {
+        margin: 5px;
+        font-size: 90%;
+    }
+}
+
+.latest-scores {
+    margin: 0 #{-$mobile-padding};
+    padding: 10px $mobile-padding 0;
+
+    .latest-block {
+        text-align: center;
+        margin: 0 #{-$mobile-padding};
+
+        a {
+            padding: 10px $mobile-padding 0;
+            display: block;
+            cursor: pointer;
+            position: relative;
+
+            .score-bg {
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+                opacity: .75;
+
+                ~ * {
+                    position: relative;
+                    z-index: 2;
+                }
+            }
+            
+            &:hover {
+                .score-bg {
+                    opacity: 1;
+                }
+            }
+
+            .title {
+                @extend %page-title;
+                display: block;
+                font-size: 25px;
+                text-align: left;
+            }
+
+            .from {
+                @extend %page-title;
+                display: block;
+                text-align: left;
+                font-size: 15px;
+                font-weight: normal;
+                font-style: italic;
+            }
+
+            .band {
+                @extend %page-title;
+                display: block;
+                text-align: right;
+            }
+
+            instrument-icons {
+                display: block;
+                margin-top: 10px;
+
+                ul {
+                    text-align: right;
+
+                    li {
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
+}

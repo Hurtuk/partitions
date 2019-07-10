@@ -1,0 +1,67 @@
+<div class="img-panel" *ngIf="imageUrl" [style.background-image]="'url(' + imageUrl + ')'">
+    <fav-star *ngIf="score?.favorite"></fav-star>
+    <div>
+        <h4>{{score?.from}}</h4>
+        <h3>{{score?.title}}</h3>
+    </div>
+</div>
+<div class="score-content" #scorecontent>
+    <div class="score-data" [class.fixed]="fixed">
+        <div class="fieldset technical-data">
+            <div class="legend">Fiche technique</div>
+            <div class="composer">Composé par {{score?.by}}</div>
+            <div class="length">{{audioLength}}</div>
+            <div class="band">
+                <a [routerLink]="['/scores', {band:score?.band.tag}]">{{score?.band.title}}</a>
+            </div>
+            <star-mark *ngIf="score?.note" [mark]="score.note"></star-mark>
+            <div class="created">Créé le {{score?.created | date:'dd/MM/y'}}</div>
+            <div class="tagsbox">
+                Tags : 
+                <a *ngFor="let tag of score?.tags"
+                    [routerLink]="['/scores', {tag:tag}]">{{tag}}</a>
+            </div>
+        </div>
+        <div class="fieldset listen">
+            <div class="legend">Ecouter</div>
+            <audio-player [audioFileUrl]="audioUrl"></audio-player>
+        </div>
+        <div class="fieldset download">
+            <div class="legend">Télécharger</div>
+            <download-buttons [score]="score"></download-buttons>
+        </div>
+        <div class="fieldset comment">
+            <div class="legend">Commentaire</div>
+            <p [innerHTML]="score?.comment"></p>
+        </div>
+        <div class="fieldset share">
+            <div class="legend">Partager</div>
+            <share-buttons *ngIf="currentUrl" [pageUrl]="currentUrl" [imageUrl]="imageUrl" [text]="score?.title + ' pour ' + score?.band.title"></share-buttons>
+        </div>
+    </div>
+    <div class="simili-col"></div>
+    <div class="score-parts">
+        <div class="scroll-level" id="parts"></div>
+        <instrument-icons [parts]="score?.parts"
+                        [clickable]="true"
+                        [full-score]="true"
+                        (onInstrumentClicked)="displayScore($event)"></instrument-icons>
+        <p class="score-indic" *ngIf="!isIE && !loading">Cliquez sur un instrument pour ouvrir la partition</p>
+        <p *ngIf="!isIE" class="falsy-panel"
+            [style.height]="similiHeight"
+            [class.visible]="loading">Chargement...</p>
+        <div class="score-container">
+            <div class="actions" *ngIf="partUrl && !loading">
+                <button class="print" (click)="print()"></button>
+                <button class="save" (click)="download()"></button>
+            </div>
+            <pdf-viewer #pdfViewer
+                        [src]="partUrlPdfViewer"
+                        [show-all]="true"
+                        [original-size]="false"
+                        [render-text]="true"
+                        (after-load-complete)="similHeight($event)"
+            ></pdf-viewer>
+        </div>
+    </div>
+</div>

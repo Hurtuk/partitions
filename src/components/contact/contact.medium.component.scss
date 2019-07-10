@@ -1,0 +1,16 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $medium-width) {
+    :host {
+        display: block;
+        width: 90%;
+        margin: 30px auto 0;
+    }
+
+    .cv {
+        float: left;
+        width: 36%;
+        max-width: 265px;
+        margin-right: 20px;
+    }
+}

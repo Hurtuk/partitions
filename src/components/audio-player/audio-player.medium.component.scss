@@ -1,0 +1,33 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $medium-width) {
+    button {
+        width: 40px;
+        height: 40px;
+
+        &.play {
+            &::before {
+                border-left-width: 16px;
+                border-top-width: 10px;
+                border-bottom-width: 10px;
+                left: 2px;
+            }
+        }
+
+        &.pause {
+            &::before {
+                border-left-width: 6px;
+                border-right-width: 6px;
+                height: 20px;
+                width: 6px;
+            }
+        }
+
+        &.stop {
+            &::before {
+                width: 16px;
+                height: 17px;
+            }
+        }
+    }
+}

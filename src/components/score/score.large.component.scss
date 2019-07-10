@@ -1,0 +1,59 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    fav-star {
+        width: 100px;
+        left: 20px;
+    }
+    
+    .img-panel {
+        height: 360px;
+    }
+
+    .score-content {
+        overflow: auto;
+    }
+
+    .simili-col {
+        display: block;
+        float: left;
+        width: 300px;
+        margin-right: 20px;
+    }
+
+    .scroll-level {
+        top: 0;
+    }
+
+    .score-data {
+        width: 300px;
+        float: left;
+        margin-right: 20px;
+        margin-bottom: 20px;
+
+        @media (min-height: 768px) {
+            &.fixed {
+                position: fixed;
+                top: 0;
+
+                + .simili-col {
+                    height: 150px;
+                }
+            }
+        }
+    }
+
+    .technical-data,
+    .listen {
+        float: none;
+        width: auto;
+        margin-right: 0;
+        max-width: none;
+    }
+
+    .score-parts {
+        overflow: hidden;
+        margin-top: 0;
+        padding-bottom: 15px;
+    }
+}

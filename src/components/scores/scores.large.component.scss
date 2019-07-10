@@ -1,0 +1,15 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    form {
+        float: left;
+        width: 240px;
+        display: block;
+        margin-right: 10px;
+
+        > * {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+    }
+}

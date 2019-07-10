@@ -1,0 +1,168 @@
+@import '../../shared/styles/theme';
+
+fav-star {
+    width: 60px;
+    position: absolute;
+    z-index: 1;
+    left: 5px;
+}
+
+.simili-col {
+    display: none;
+}
+
+.fieldset {
+    @include shadowed;
+    background-color: $color-gray;
+    border: 0;
+    padding: 5px 10px 10px;
+    margin-top: 15px;
+    position: relative;
+
+    .legend {
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        margin-bottom: 8px;
+        font-weight: bold;
+        text-shadow: 0 0 1px $color-shadow;
+    }
+}
+
+.length {
+    position: relative;
+    font-size: 18px;
+
+    &::before {
+        @include bgimg($img-duration, 20px);
+        content: '';
+        position: absolute;
+        left: -30px;
+        top: 0;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.band {
+    font-weight: bold;
+}
+
+.band,
+.length {
+    margin-top: 10px;
+}
+
+.length,
+star-mark {
+    float: right;
+    clear: both;
+}
+
+.created {
+    font-style: italic;
+    color: $color-darkgray;
+    font-size: 13px;
+}
+
+star-mark,
+.created {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+audio-player {
+    margin: 0 -10px;
+    text-align: right;
+
+    /*/deep/*/ .stop {
+        margin-right: 15px;
+    }
+}
+
+.tagsbox {
+    margin-top: 5px;
+    line-height: 1.5em;
+
+    a {
+        display: inline-block;
+        border: 1px solid $color-darkred;
+        color: $color-darkred;
+        border-radius: 5px;
+        padding: 0 2px;
+        margin: 0 2px;
+        line-height: 1.1em;
+
+        &:hover {
+            background-color: $color-darkred;
+            color: $color-white;
+        }
+    }
+}
+
+.download {
+    display: none;
+}
+
+.comment {
+    display: none;
+}
+
+.score-parts {
+    margin-top: 20px;
+}
+
+.score-container {
+    position: relative;
+}
+
+.actions {
+    display: none;
+}
+
+.listen {
+    padding-bottom: 0;
+    margin-top: 15px;
+    padding-top: 12px;
+
+    .legend {
+        position: absolute;
+        top: 6px;
+    }
+}
+
+pdf-viewer {
+    position: relative;
+    left: -15px;
+    width: calc(100vw - 15px);
+    display: block;
+    min-height: 100px;
+}
+
+.scroll-level {
+    position: relative;
+    top: -$header-height;
+}
+
+.falsy-panel {
+    visibility: hidden;
+
+    &.visible {
+        visibility: visible;
+
+        + * {
+            visibility: hidden;
+        }
+    }
+}
+
+.score-indic,
+.falsy-panel {
+    @include text-inner-shadow;
+    position: absolute;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    width: calc(100% - 20px);
+    min-height: 100px;
+}

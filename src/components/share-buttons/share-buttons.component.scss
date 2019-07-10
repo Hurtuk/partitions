@@ -1,0 +1,32 @@
+@import '../../shared/styles/theme';
+
+:host {
+    display: block;
+    text-align: center;
+}
+
+button {
+    @include shadowed;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 8px 12px;
+    width: 83px;
+    font-weight: bold;
+    font-family: Arial;
+    margin: 0 15px;
+
+    &:active {
+        @extend %shadowed-clicked;
+    }
+
+    &.facebook {
+        background-color: $color-facebook;
+        color: $color-white;
+    }
+    
+    &.twitter {
+        background-color: $color-twitter;
+        color: $color-white;
+    }
+}

@@ -1,0 +1,50 @@
+@import '../../shared/styles/theme';
+
+a {
+    @include shadowed;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 15px;
+    cursor: pointer;
+    padding: 2px 10px;
+    background-color: $color-orange;
+    color: white;
+}
+
+ul {
+    @include shadowed;
+    background-color: $color-orange;
+    margin-top: 15px;
+    position: relative;
+    padding: 10px;
+
+    &::before {
+        content: '';
+        display: block;
+        border-bottom: 15px solid $color-orange;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        position: absolute;
+        top: -15px;
+        left: 20px;
+    }
+
+    li {
+        cursor: pointer;
+
+        &::before {
+            content: '> ';
+            visibility: hidden;
+        }
+
+        &:first-child {
+            font-weight: bold;
+        }
+
+        &:hover {
+            &::before {
+                visibility: visible;
+            }
+        }
+    }
+}

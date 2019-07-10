@@ -1,0 +1,247 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    :host {
+        box-shadow: none;
+        position: relative;
+        background-color: $color-white;
+        box-shadow: 0 2px 4px $color-shadow;
+    }
+
+    .social-links {
+        position: relative;
+        right: $header-height;
+
+        a {
+            display: block;
+            width: $header-height / 2;
+            height: $header-height / 2;
+            background-size: 20px !important;
+        }
+    }
+    
+    h1 {
+        padding-left: 10px;
+        float: left;
+        margin: 0;
+        line-height: 10px;
+    }
+
+    .search-box {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        background-color: $color-orange;
+        min-width: $header-height;
+        z-index: 100;
+        cursor: pointer;
+
+        input {
+            width: 0;
+            transition: width .5s;
+            margin-top: 16px;
+            border-bottom-color: transparent;
+            cursor: pointer;
+            color: $color-white;
+
+            &.open {
+                width: 200px;
+                border-bottom-color: unset;
+                margin-left: 12px;
+                margin-right: 12px;
+                cursor: initial;
+            }
+        }
+    }
+
+    .search-results {
+        background-color: $color-orange;
+        transform: scaleY(0);
+        transform-origin: 50% 0;
+        transition: transform .5s ease;
+        padding: 15px;
+        overflow: auto;
+        display: block;
+
+        .close-results {
+            @include bgimg($img-quit, 20px);
+            width: 20px;
+            height: 20px;
+            padding: 0;
+            background-color: transparent;
+        }
+
+        &.open {
+            transform: scaleY(1);
+        }
+
+        * {
+            color: $color-white;
+        }
+
+        button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .score-results {
+            float: left;
+            margin-right: 30px;
+
+            &.full-line {
+                float: none;
+                margin-right: -15px;
+                margin-left: -15px;
+                padding: 0 15px 10px;
+                margin-bottom: 10px;
+                border-bottom: 1px solid $color-white;
+
+                > div {
+                    display: flex;
+                    font-size: 90%;
+                }
+
+                a {
+                    flex: 1;
+                    padding: 5px;
+
+                    + a {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+
+        .score-title {
+            font-weight: bold;
+            font-size: 120%;
+        }
+
+        .score-band {
+            font-style: italic;
+        }
+
+        a {
+            cursor: pointer;
+            display: block;
+            
+            &:hover {
+                background-color: rgba(255, 255, 255, .3);
+            }
+        }
+
+        .others {
+            display: flex;
+
+            > div {
+                flex: 1;
+                white-space: nowrap;
+
+                + div {
+                    margin-left: 50px;
+                }
+            }
+        }
+    }
+
+    nav {
+        display: inline-block;
+
+        ul {
+            li {
+                display: inline-block;
+                vertical-align: top;
+                position: relative;
+                padding: 0 10px;
+
+                &.menu-winds {
+                    a {
+                        @include bgimg($img-header-winds, 30px);
+                        background-position: center 41px;
+                        font-size: 160%;
+
+                        &::before {
+                            content: 'Orchestre à';
+                        }
+
+                        &.invisible {
+                            background-image: url($img-header-winds-white);
+                        }
+                    }
+                }
+                
+                &.menu-strings {
+                    a {
+                        @include bgimg($img-header-strings, 23px);
+                        background-position: center 44px;
+                        font-size: 160%;
+
+                        &::before {
+                            content: 'Orchestre à';
+                        }
+                        
+                        &.invisible {
+                            background-image: url($img-header-strings-white);
+                        }
+                    }
+                }
+
+                a {
+                    color: $color-darkgray;
+                    display: block;
+                    line-height: $header-height;
+                    position: relative;
+                    min-width: 100px;
+                    text-align: center;
+                    font-size: 130%;
+                    text-transform: uppercase;
+
+                    &::before {
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        top: 12px;
+                        left: 0;
+                        text-align: center;
+                        white-space: nowrap;
+                        line-height: 1em;
+                        font-size: 50%;
+                    }
+
+                    &:first-child {
+                        &:hover {
+                            + .invisible {
+                                height: $header-height;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .invisible {
+        height: 0;
+        overflow: hidden;
+        position: absolute !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        transition: height .5s;
+        background-color: $color-darkgray;
+        color: $color-white !important;
+
+        &:hover {
+            height: $header-height;
+        }
+    }
+}

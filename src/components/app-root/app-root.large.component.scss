@@ -1,0 +1,19 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    :host {
+        position: relative;
+        padding-bottom: $footer-height;
+        min-height: calc(100% - 40px);
+    }
+
+    .page-content {
+        margin-top: 0;
+        padding-top: $header-height;
+    }
+
+    header {
+        position: absolute;
+        top: 0;
+    }
+}

@@ -1,0 +1,84 @@
+@import '../../shared/styles/theme';
+
+:host {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+button {
+    @include shadowed;
+    border-radius: 100%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+    background-color: $color-darkgray;
+    opacity: .6;
+
+    &:active {
+        @extend %shadowed-clicked;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        margin: 0 auto;
+        width: 25px;
+        height: 25px;
+    }
+
+    &.play {
+        &::before {
+            width: 0;
+            height: 0;
+            border-left: 21px solid $color-lightgray;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            position: relative;
+            left: 1px;
+        }
+    }
+
+    &.pause {
+        &::before {
+            width: 6px;
+            border-left: 8px solid $color-lightgray;
+            border-right: 8px solid $color-lightgray;
+        }
+    }
+
+    &.stop {
+        margin-left: 15px;
+
+        &::before {
+            width: 20px;
+            height: 21px;
+            background-color: $color-lightgray;
+        }
+    }
+}
+
+progress-bar {
+    display: block;
+    margin-top: 15px;
+}
+
+div {
+    margin-left: 10px;
+    line-height: 50px;
+
+    span {
+        font-size: 1.5em;
+        display: inline-block;
+
+        &.current-time {
+            color: $color-darkred;
+
+            &::after {
+                content: ' | ';
+                color: lightgray;
+            }
+        }
+    }
+}

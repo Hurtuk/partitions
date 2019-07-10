@@ -1,0 +1,18 @@
+<ul class="errors" *ngIf="errors">
+    <li *ngFor="let e of errors | async" [innerHTML]="e"></li>
+</ul>
+<table>
+    <tbody>
+        <ng-container *ngFor="let s of scores | async">
+            <tr>
+                <td><a [routerLink]="['/admin/score', {tag:s.tag}]">{{s.title}}</a></td>
+                <td rowspan="2">{{s.tag}}</td>
+                <td>{{s.band.title}}</td>
+            </tr>
+            <tr>
+                <td>{{s.from}}</td>
+                <td><star-mark [mark]="s.note"></star-mark></td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+@import '../../shared/styles/theme';
+
+:host {
+    white-space: nowrap;
+}
+
+.star {
+    @include bgimg($img-star, 100%);
+    display: inline-block;
+    vertical-align: top;
+    width: 16px;
+    height: 16px;
+
+    &.black {
+        @include bgimg($img-star-black, 100%);
+    }
+}

@@ -1,0 +1,26 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $large-width) {
+    :host {
+        padding-top: 60px;
+        display: block;
+    }
+
+    .latest-scores {
+        .latest-block {
+            a {
+                min-width: calc(22% - 20px);
+                max-width: calc(22% - 20px);
+
+                &:first-child {
+                    min-width: calc(34% - 20px);
+                    max-width: calc(34% - 20px);
+                }
+
+                &:nth-child(n+6) {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

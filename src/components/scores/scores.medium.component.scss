@@ -1,0 +1,83 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $medium-width) {
+    form {
+        @include columned-flex(2, 20px);
+
+        > * {
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+        }
+
+        > .composer {
+            display: block;
+        }
+    }
+    
+    .score-header-bg {
+        display: block;
+        background-position: center center;
+        background-size: cover;
+        height: 120px;
+        margin: -8px -8px 0;
+        opacity: .85;
+    }
+
+    .score-header {
+        position: relative;
+    }
+
+    .titles {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        width: calc(100% - 5px);
+
+        h4 {
+            position: absolute;
+            top: calc(100% + 9px);
+            left: -6px;
+            white-space: nowrap;
+            display: block;
+            overflow: hidden;
+            max-width: calc(100% - 95px);
+            text-overflow: ellipsis;
+        }
+    }
+
+    .search-results {
+        @include columned-flex(3, 32px);
+        padding-top: 20px;
+
+        > .results-title {
+            flex: 1 0 100%;
+        }
+        
+        .scholar-year {
+            flex: 0 1;
+            min-width: 70%;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .mark-date {
+            right: 8px;
+        }
+
+        a {
+            margin: 8px;
+            padding-right: 8px;
+            padding-bottom: 50px;
+
+            &::after {
+                content: none;
+            }
+
+            &:hover {
+                .score-header-bg {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

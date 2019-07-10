@@ -1,0 +1,15 @@
+<header></header>
+<side-nav></side-nav>
+<div class="page-content">
+    <router-outlet></router-outlet>
+</div>
+<footer>
+    <div>Copyright © L'Ouïe Cinéphile</div>
+    <div>Toutes les partitions peuvent être utilisées dans un but non commercial.</div>
+    <ul>
+        <li><a routerLink="/contact">Contact</a></li>
+    </ul>
+</footer>
+<ul *ngIf="errorMessages.length">
+    <li *ngFor="let error of errorMessages">{{ error }}</li>
+</ul>

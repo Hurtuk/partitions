@@ -1,0 +1,59 @@
+@import '../../shared/styles/theme';
+
+@media screen and (min-width: $medium-width) {
+    .latest-scores {
+        .latest-block {
+            height: 400px;
+
+            a {
+                display: inline-block;
+                min-width: calc(25% - 20px);
+                max-width: calc(25% - 20px);
+                height: calc(50% - 10px);
+                vertical-align: top;
+                overflow: hidden;
+                position: relative;
+
+                &:first-child {
+                    float: left;
+                    min-width: calc(50% - 20px);
+                    max-width: calc(50% - 20px);
+                    height: calc(100% - 10px);
+
+                    .title {
+                        font-size: 35px;
+                    }
+
+                    .band {
+                        font-size: 25px;
+                    }
+
+                    instrument-icons {
+                        ul {
+                            li {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                    }
+                }
+
+                + a {
+                    instrument-icons {
+                        display: none;
+                    }
+                }
+
+                &:nth-child(n+6) {
+                    display: none;
+                }
+                
+                .parts {
+                    position: absolute !important;
+                    bottom: 10px;
+                    right: 10px;
+                }
+            }
+        }
+    }
+}

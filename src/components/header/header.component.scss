@@ -1,0 +1,45 @@
+@import '../../shared/styles/theme';
+
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    background-color: $color-lightgray;
+    display: block;
+    box-shadow: 0 0 5px 0 $color-shadow;
+}
+
+h1 {
+    margin: 0;
+    padding-left: 90px;
+    margin-top: 2px;
+    font-weight: 100;
+    line-height: 1em;
+    text-align: center;
+}
+
+.social-links {
+    display: none;
+}
+
+.search-results {
+    display: none;
+
+    h2 {
+        @extend %page-title;
+    }
+}
+
+.search-box {
+    display: none;
+}
+
+nav {
+    display: none;
+
+    a {
+        cursor: pointer;
+    }
+}

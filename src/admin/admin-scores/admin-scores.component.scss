@@ -1,0 +1,32 @@
+@import '../../shared/styles/theme';
+
+.errors {
+    background-color: $color-darkred;
+    padding: 10px;
+
+    * {
+        color: $color-white;
+    }
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+
+    tr {
+        &:nth-child(odd) {
+            &:not(:first-child) {
+                td {
+                    border-top: 1px solid $color-darkgray;
+                }
+            }
+        }
+
+        &:nth-child(4n+3),
+        &:nth-child(4n+3) + tr {
+            td {
+                background-color: $color-beige;
+            }
+        }
+    }
+}
