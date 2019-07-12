@@ -1,3 +1,5 @@
+@import './shared/styles/colors';
+
 html,
 body {
     padding: 0;
@@ -15,5 +17,35 @@ body {
 
     body {
         height: calc(100% - 70px);
+    }
+}
+
+* {
+    outline: 0;
+    color: $color-text;
+}
+
+a {
+    color: $color-darkred;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+input[type='button'],
+button {
+    border: 0;
+}
+
+.page-content {
+    input {
+        &[type=text] {
+            height: 40px;
+            padding: 5px 10px;
+        }
     }
 }

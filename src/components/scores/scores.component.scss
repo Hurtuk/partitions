@@ -41,24 +41,6 @@ form {
     }
 }
 
-instrument-icons {
-    /*/deep/*/ li {
-        position: relative;
-
-        &:hover {
-            &::after {
-                @include bgimg($img-delete, 100%);
-                content: '';
-                width: 18px;
-                height: 18px;
-                position: absolute;
-                top: 0;
-                right: 0;
-            }
-        }
-    }
-}
-
 fav-star {
     float: right;
     width: 40px;

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AdminModule } from './admin.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,8 +29,7 @@ import { DownloadService } from '../services/download.service';
 import { BrowserService } from '../services/browser.service';
 import { NewsService } from '../services/news.service';
 
-/*import { SmoothScrollToDirective, SmoothScrollDirective } from 'ng2-smooth-scroll';*/
-import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { DateFrPipe } from '../shared/pipes/DateFrPipe.pipe';
 import { SafeHtmlPipe } from '../shared/pipes/SafeHtmlPipe.pipe';
@@ -40,14 +38,11 @@ import { DatePipe } from '@angular/common';
 import { AuthGuard } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { LoginComponent } from '../admin/login/login.component';
-import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 @NgModule({
   declarations: [
-    /*SmoothScrollToDirective,
-    SmoothScrollDirective,*/
-    PdfViewerComponent,
-
     AppRootComponent,
     SideNavComponent,
     HeaderComponent,
@@ -70,9 +65,11 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PdfViewerModule,
     FormsModule,
     AdminModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPageScrollCoreModule
   ],
   providers: [
     ScoreService,
@@ -87,8 +84,7 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
     DatePipe,
     AuthGuard,
     AuthService,
-    HttpClient,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    HttpClient
   ],
   bootstrap: [AppRootComponent]
 })

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'score/:tag', component: ScoreComponent },
   { path: 'scores', component: ScoresComponent },
+  { path: 'scores/:band', component: ScoresComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent }
 ];

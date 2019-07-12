@@ -1,10 +1,10 @@
 
-import {combineLatest as observableCombineLatest,  Observable } from 'rxjs';
+import {combineLatest as observableCombineLatest } from 'rxjs';
 
-import {map} from 'rxjs/operators';
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
+import {map, switchMap} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { BandService } from '../../services/band.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
@@ -46,8 +46,8 @@ export class ScoresComponent implements OnInit {
 
     public results: Score[];
 
-    public searching: boolean;
-    public yeared: boolean;
+    public searching = false;
+    public yeared = false;
 
     public year: string;
 
@@ -55,7 +55,6 @@ export class ScoresComponent implements OnInit {
                 private bandService: BandService,
                 private scoreService: ScoreService,
                 private metadataService: ScoreMetadataService,
-                private menuService: MenuService,
                 private titleService: Title) { }
 
     public changeBand() {
@@ -79,10 +78,8 @@ export class ScoresComponent implements OnInit {
     }
 
     public search(): void {
-        if (this.title || this.bandTag || this.pickedInstruments.length || this.composer || this.pickedTags.length) {
-            this.scoreService.searchScoreByCritera(this.title, this.bandTag, this.pickedInstruments, this.composer, this.pickedTags)
-                            .subscribe(x => this.results = x);
-        }
+        this.scoreService.searchScoreByCritera(this.title, this.bandTag, this.pickedInstruments, this.composer, this.pickedTags)
+                        .subscribe(x => this.results = x);
     }
 
     public getImageUrl(score: Score) {
@@ -97,34 +94,45 @@ export class ScoresComponent implements OnInit {
     }
 
     ngOnInit() {
-        let instruments: string;
-        this.metadataService.getInstruments().subscribe(x => this.instruments = x);
-        const bandsObservable = this.bandService.getBands().pipe(map(x => this.bands = x));
-        const composersObservable = this.metadataService.searchComposer().pipe(map(x => this.composers = x));
-        const paramsObservable = this.route.params.pipe(map(params => {
-            this.title = params['title'];
-            this.bandTag = params['band'];
-            this.composer = params['composer'];
-            instruments = params['instrument'];
-            this.pickedTags = params['tag'] ? params['tag'].split(',') : [];
-        }));
-        observableCombineLatest(bandsObservable, paramsObservable, composersObservable)
-            .subscribe(any => {
-                this.results = [];
-                this.pickedInstruments = [];
-                if (instruments) {
-                    instruments.split(',').forEach(x => {
-                        for (const i of this.instruments) {
-                            if (i.instrumentTag === x) {
-                                this.pickInstrument(null, JSON.stringify(i));
-                                break;
+        this.route.paramMap
+            .subscribe((params: ParamMap) => {
+                const bandsObservable = this.bandService.getBands().pipe(map(x => this.bands = x));
+                // Page ensemble
+                if (params.get('band')) {
+                    this.bandTag = params.get('band');
+                    this.yeared = ['winds', 'strings'].indexOf(this.bandTag) !== -1;
+                    bandsObservable.subscribe(() => this.changeBand());
+                // Page recherche
+                } else {
+                    let instruments: string;
+                    this.metadataService.getInstruments().subscribe(x => this.instruments = x);
+                    const composersObservable = this.metadataService.searchComposer().pipe(map(x => this.composers = x));
+                    const paramsObservable = this.route.params.pipe(map(params => {
+                        this.title = params['title'];
+                        this.bandTag = params['band'];
+                        this.composer = params['composer'];
+                        instruments = params['instrument'];
+                        this.pickedTags = params['tag'] ? params['tag'].split(',') : [];
+                    }));
+                    observableCombineLatest(bandsObservable, paramsObservable, composersObservable)
+                        .subscribe(() => {
+                            this.results = [];
+                            this.pickedInstruments = [];
+                            if (instruments) {
+                                instruments.split(',').forEach(x => {
+                                    for (const i of this.instruments) {
+                                        if (i.instrumentTag === x) {
+                                            this.pickInstrument(null, JSON.stringify(i));
+                                            break;
+                                        }
+                                    }
+                                });
                             }
+                            this.searching = true;
+                            this.changeBand();
                         }
-                    });
+                    );
                 }
-                this.searching = !this.bandTag;
-                this.yeared = !this.searching && this.bandTag && ['winds', 'strings'].indexOf(this.bandTag) !== -1;
-                this.changeBand();
             });
     }
 

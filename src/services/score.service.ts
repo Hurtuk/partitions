@@ -34,7 +34,7 @@ export class ScoreService {
 
     public searchScoreByCritera(title: string, bandTag: string, instruments: Part[], composer: string, tags: string[]) {
         return this.http.get(this.urlBuilder.buildUrl('searchScoreByCriteria',
-                                                    title, bandTag, instruments.map(x => x.instrumentTag).join(','),
+                                                    title, bandTag, instruments ? instruments.map(x => x.instrumentTag).join(','): '',
                                                     composer, tags ? tags.join(';') : []))
                         .pipe(map((response: Response) => response.data.map(x => this.jsonToScore(x))));
     }

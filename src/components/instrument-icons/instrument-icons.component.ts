@@ -12,6 +12,7 @@ import { ScoreService } from '../../services/score.service';
 export class InstrumentIconsComponent {
     @Input() public parts: Part[];
     @Input() public clickable = false;
+    @Input() public deletable = false;
     @Input('full-score') public fullScore = false;
     @Output() public onInstrumentClicked: EventEmitter<any> = new EventEmitter();
 

@@ -36,6 +36,7 @@
             *ngIf="pickedInstruments"
             [parts]="pickedInstruments"
             [clickable]="true"
+            [deletable]="true"
             [full-score]="false"
             (onInstrumentClicked)="unpickInstrument($event)"></instrument-icons>
     </div>

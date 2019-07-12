@@ -14,8 +14,6 @@ $side-nav-width: 270px;
 
 $large-content-width: 1200px;
 
-$fields-height: 40px;
-
 @mixin bgimg($image, $w: auto, $h: auto) {
     background-image: url($image);
     background-repeat: no-repeat;
@@ -60,36 +58,6 @@ $fields-height: 40px;
     left: -1px;
 }
 
-* {
-    outline: 0;
-    color: $color-text;
-}
-
-a {
-    color: $color-darkred;
-    text-decoration: none;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-input[type='button'],
-button {
-    border: 0;
-}
-
-.page-content {
-    /*/deep/*/ input {
-        &[type=text] {
-            height: $fields-height;
-            padding: 5px 10px;
-        }
-    }
-}
-
 %field-content {
     font-size: 16px;
     color: $color-text;
@@ -125,7 +93,7 @@ select {
     border: 0;
     border-bottom: 1px solid $color-text;
     padding: 5px 10px;
-    height: $fields-height + 11px;
+    height: 51px;
     appearance: none;
 
     &::-ms-expand

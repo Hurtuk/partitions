@@ -18,6 +18,7 @@ import { Score } from '../../model/score';
 import { Part } from "../../model/part";
 
 import {saveAs as importedSaveAs} from "file-saver";
+import { PageScrollService } from 'ngx-page-scroll-core';
 
 @Component({
     selector: 'score',
@@ -57,7 +58,8 @@ export class ScoreComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private downloadService: DownloadService,
         private browserService: BrowserService,
-        private titleService: Title) { }
+        private titleService: Title,
+        private pageScrollService: PageScrollService) { }
 
     public displayScore(part: Part): void {
         if (part !== this.selectedPart) {
@@ -65,7 +67,7 @@ export class ScoreComponent implements OnInit {
             this.similiHeight = this.pdfViewer.nativeElement.offsetHeight;
             this.selectedPart = part;
             this.partUrl = this.scoreMetadataService.getPartPdfUrl(this.score, part);
-            this.partUrlPdfViewer = /*'../' + */this.partUrl;
+            this.partUrlPdfViewer = this.partUrl;
             this.sidebarPosition = this.scoreContent.nativeElement.offsetTop;
         }
     }
@@ -85,6 +87,10 @@ export class ScoreComponent implements OnInit {
         this.similiHeight = this.sanitizer.bypassSecurityTrustStyle(
             "calc((" + this.pdfViewer.nativeElement.offsetWidth + " - 20px) * (29.7 / 21) * " + pdf.numPages + ")"
         );
+        this.pageScrollService.scroll({
+            document: this.document,
+            scrollTarget: '.score-parts'
+        });
     }
 
     @HostListener("window:scroll", [])

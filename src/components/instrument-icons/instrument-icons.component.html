@@ -1,4 +1,4 @@
-<ul [class.clickable]="clickable">
+<ul [class.clickable]="clickable" [class.deletable]="deletable">
     <li *ngIf="fullScore"
         class="full-score"
         (click)="instrumentClicked(fullScorePart)"

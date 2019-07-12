@@ -3,10 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UrlBuilderService {
 
-    // private urlPrefix = '/partitionsServer/api/';
     private urlPrefix = 'http://www.louiecinephile.fr/partitionsServer/api/';
-
-    //public scoresPath = '/partitionsServer/scores';
     public scoresPath = 'http://www.louiecinephile.fr/partitionsServer/scores';
 
     public buildUrl(request: string, ...args: any[]): string {

@@ -10,6 +10,24 @@ ul {
         }
     }
 
+    &.deletable {
+        li {
+            position: relative;
+    
+            &:hover {
+                &::after {
+                    @include bgimg($img-delete, 100%);
+                    content: '';
+                    width: 18px;
+                    height: 18px;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
+    }
+
     li {
         @include shadowed(2);
         display: inline-block;
