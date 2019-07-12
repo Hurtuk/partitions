@@ -7,11 +7,15 @@
 </div>
 <div class="news">
     <div *ngFor="let n of latestNews | async">
-        <div class="news-header">
+        <!--<div class="news-header">
             <div class="news-date">{{n.date | datefr: 'd MMMM y'}}</div>
             <h4 class="news-title" [innerHTML]="n.title | safeHtml"></h4>
+        </div>-->
+        <div class="news-content">
+            <img src="assets/15340059192.png" height="180" style="float: left; margin-right: 10px">
+            <p><em>Chef d’orchestre à Boston, Gael Cannon est envoyé au Népal à la recherche de la viole de Maggini. De nombreux mystères entourent cet objet aux pouvoirs… vite inquiétants.<br>De retour à Boston, Gael découvre que cette viole est l’un des cinq instruments enchantés pour lesquels le fameux compositeur russe Tchaïkovsky aurait écrit une mystérieuse Dernière Symphonie.<br>Débute alors une quête entre passion pour la musique et phénomènes fantastiques. Faut-il vraiment retrouver et réunir les cinq instruments ? Quels sont les véritables pouvoirs de cette symphonie prophétique ?</em></p>
+            <p><strong>Philharmonia</strong>, de <strong>Nicolas Lethuillier</strong>, un roman fantastique dans l'univers de la musique, <strong><a href="https://www.amazon.fr/Philharmonia-Nicolas-Lethuillier/dp/1718016263/" target="_blank">en vente sur Amazon</a></strong> !</p>
         </div>
-        <div class="news-content" [innerHTML]="n.content | safeHtml"></div>
     </div>
 </div>
 <div class="latest-scores">

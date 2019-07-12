@@ -1,3 +1,3 @@
 <button (click)="toggleAudio()" [class.play]="!isPlaying" [class.pause]="isPlaying"></button>
 <button (click)="stop()" class="stop"></button>
-<progress-bar></progress-bar>
+<progress-bar #progressbar (click)="setTime($event)"></progress-bar>

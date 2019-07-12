@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-//import { CeiboShare } from 'ng2-social-share';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'share-buttons',

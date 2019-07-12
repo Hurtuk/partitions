@@ -18,9 +18,7 @@
 <html lang="en" xmlns:og=”http://ogp.me/ns#”>
 <head>
   <meta charset="utf-8">
-  <title>L'Ouïe Cinéphile - arrangements pour toutes formations</title>
-  <base href="/partitions/">
-  <!--<base href="/">-->
+  <title><?php echo $score['name']; ?> pour <?php echo $score['name_band']; ?> - L'Ouïe Cinéphile</title>
 
   <link rel="apple-touch-icon" sizes="57x57" href="./assets/images/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="./assets/images/favicon/apple-icon-60x60.png">
@@ -56,12 +54,12 @@
     ?>
   <meta property="og:description" content="<?php echo $desc; ?>"/>
   <meta property="og:site_name" content="L'Ouïe Cinéphile - Partitions gratuites"/>
-  <meta property="og:url" content="http://www.louiecinephile.fr/partitions/#/score/<?php echo $tag; ?>"/>
+  <meta property="og:url" content="http://www.louiecinephile.fr/partitions/score/<?php echo $tag; ?>"/>
 
 </head>
 <body>
     <script type="text/javascript">
-        window.location.replace("http://www.louiecinephile.fr/partitions/#/score/<?php echo $tag; ?>");
+        window.location.replace("http://www.louiecinephile.fr/partitions/score/<?php echo $tag; ?>");
     </script>
 </body>
 </html>

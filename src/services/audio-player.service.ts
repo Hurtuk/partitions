@@ -2,7 +2,7 @@
 import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import { OnInit } from "@angular/core/core";
 
-import { Subject } from "rxjs";
+import { Subject, BehaviorSubject } from "rxjs";
 
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
@@ -12,7 +12,7 @@ export class AudioPlayerService implements OnInit {
     private audio: HTMLAudioElement;
     public audioUrl: Subject<string> = new Subject<string>();
     public currentTime: Subject<number> = new Subject<number>();
-    public fullTime: Subject<number> = new Subject<number>();
+    public fullTime: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public isPlaying: Subject<boolean> = new Subject<boolean>();
     private lastTime: number;
 
@@ -54,6 +54,10 @@ export class AudioPlayerService implements OnInit {
                 this.currentTime.next(time / 100);
             }
         };
+    }
+
+    public setTime(time: number): void {
+        this.audio.currentTime = time;
     }
 
     public play(): void {

@@ -34,7 +34,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DateFrPipe } from '../shared/pipes/DateFrPipe.pipe';
 import { SafeHtmlPipe } from '../shared/pipes/SafeHtmlPipe.pipe';
 import { DatePipe } from '@angular/common';
-//import { CeiboShare } from 'ng2-social-share';
+import { CeiboShare } from 'ng2-social-share';
 import { AuthGuard } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { LoginComponent } from '../admin/login/login.component';
@@ -58,7 +58,7 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     ContactComponent,
     LoginComponent,
 
-    //CeiboShare,
+    CeiboShare,
     DateFrPipe,
     SafeHtmlPipe
   ],

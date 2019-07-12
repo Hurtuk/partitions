@@ -12,15 +12,11 @@ export class ProgressBarComponent implements OnInit {
 
     public currentPercent: number;
     private fullTime: number;
-    private currentTimeSubscription: any;
-    private fullTimeSubscription: any;
 
     constructor(private playerService: AudioPlayerService) { }
 
     ngOnInit(): void {
-        this.currentTimeSubscription = this.playerService.currentTime
-            .subscribe(data => this.currentPercent = data * 100 / this.fullTime);
-        this.fullTimeSubscription = this.playerService.fullTime
-            .subscribe(data => this.fullTime = data);
+        this.playerService.currentTime.subscribe(data => this.currentPercent = data * 100 / this.fullTime);
+        this.playerService.fullTime.subscribe(data => this.fullTime = data);
     }
 }
