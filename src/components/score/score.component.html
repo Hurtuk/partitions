@@ -12,7 +12,7 @@
             <div class="composer">Composé par {{score?.by}}</div>
             <div class="length">{{audioLength}}</div>
             <div class="band">
-                <a [routerLink]="['/scores', {band:score?.band.tag}]">{{score?.band.title}}</a>
+                <a [routerLink]="'/scores/' + score?.band.tag">{{score?.band.title}}</a>
             </div>
             <star-mark *ngIf="score?.note" [mark]="score.note"></star-mark>
             <div class="created">Créé le {{score?.created | date:'dd/MM/y'}}</div>

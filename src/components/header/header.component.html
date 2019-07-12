@@ -36,7 +36,7 @@
         <div class="band-results" *ngIf="searchResults && searchResults[1].length">
             <h2>Ensembles</h2>
             <div>
-                <a (click)="closeAll()" [routerLink]="['/scores', {band:band.tag}]" *ngFor="let band of searchResults[1]">{{band.name}} ({{band.nb}})</a>
+                <a (click)="closeAll()" [routerLink]="'/scores/' + band.tag" *ngFor="let band of searchResults[1]">{{band.name}} ({{band.nb}})</a>
             </div>
         </div>
         <div class="instruments-results" *ngIf="searchResults && searchResults[2].length">

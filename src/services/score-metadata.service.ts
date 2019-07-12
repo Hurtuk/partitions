@@ -54,7 +54,7 @@ export class ScoreMetadataService {
 
     public getScholarYear(score: Score) {
         const y = score.created.getFullYear();
-        if (score.created.getMonth() >= 6) {
+        if (score.created.getMonth() >= 5 || (score.created.getMonth() === 4 && score.created.getDate() >= 20)) {
             return y + '/' + (y + 1);
         }
         return (y - 1) + '/' + y;
