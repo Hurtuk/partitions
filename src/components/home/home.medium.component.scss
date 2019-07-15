@@ -1,6 +1,10 @@
 @import '../../shared/styles/theme';
 
 @media screen and (min-width: $medium-width) {
+    .news {
+        display: block;
+    }
+
     .latest-scores {
         .latest-block {
             height: 400px;

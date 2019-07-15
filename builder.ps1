@@ -22,7 +22,7 @@ $SFTP_HOST = 'sftp.sd6.gpaas.net'
 $SFTP_USER = '46640'
 $SFTP_PASSWORD = 'nlyugi1991'
 $INITIAL_PATH = '/vhosts/www.louiecinephile.fr/htdocs'
-$PATH = 'partitions2'
+$PATH = 'partitions'
 
 # SFTP Credential
 $Password = ConvertTo-SecureString $SFTP_PASSWORD -AsPlainText -Force
