@@ -96,6 +96,22 @@ export class AdminScoreComponent implements OnInit {
     }
 
     saveFiles(callback = (x => x)) {
+        // Set numbers on parts
+        const tags = this.score.parts.map(part => part.instrumentTag);
+        const counts = [];
+        tags.forEach(part => {
+            const index = counts.findIndex(p => p.tag === part);
+            if (index !== -1) counts[index].count++;
+            else counts.push({tag: part, count: 1});
+        });
+        counts.forEach(count =>
+            this.score.parts
+                .filter(p => p.instrumentTag === count.tag)
+                .forEach((part, index) => {
+                    part.instrumentsCount = count.count;
+                    part.instrumentNumber = index + 1;
+                }));
+        // Save
         this.scoreService.saveFiles(
             this.score.tag, this.mp3, this.midi, this.mus, this.image, this.conductor, this.score.parts).subscribe(x => {
             callback(x);
@@ -104,7 +120,7 @@ export class AdminScoreComponent implements OnInit {
     }
 
     saveAll() {
-        this.saveData(x => this.saveFiles(d => this.allSaved = true));
+        this.saveData(() => this.saveFiles(() => this.allSaved = true));
     }
 
     addPart() {
