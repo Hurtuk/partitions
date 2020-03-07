@@ -16,7 +16,7 @@ import { AudioPlayerComponent } from "../components/audio-player/audio-player.co
 import { ScoresComponent } from "../components/scores/scores.component";
 import { ProgressBarComponent } from "../components/progress-bar/progress-bar.component";
 import { DownloadButtonsComponent } from '../components/download-buttons/download-buttons.component';
-import { ShareButtonsComponent } from '../components/share-buttons/share-buttons.component';
+import { SocialShareButtonsComponent } from '../components/share-buttons/share-buttons.component';
 import { ContactComponent } from '../components/contact/contact.component';
 
 import { ScoreService } from '../services/score.service';
@@ -34,12 +34,12 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { DateFrPipe } from '../shared/pipes/DateFrPipe.pipe';
 import { SafeHtmlPipe } from '../shared/pipes/SafeHtmlPipe.pipe';
 import { DatePipe } from '@angular/common';
-import { CeiboShare } from 'ng2-social-share';
 import { AuthGuard } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
 import { LoginComponent } from '../admin/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
   declarations: [
@@ -54,11 +54,10 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     ScoresComponent,
     ProgressBarComponent,
     DownloadButtonsComponent,
-    ShareButtonsComponent,
+    SocialShareButtonsComponent,
     ContactComponent,
     LoginComponent,
 
-    CeiboShare,
     DateFrPipe,
     SafeHtmlPipe
   ],
@@ -69,7 +68,8 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     FormsModule,
     AdminModule,
     HttpClientModule,
-    NgxPageScrollCoreModule
+    NgxPageScrollCoreModule,
+    ShareButtonsModule
   ],
   providers: [
     ScoreService,

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'star-mark',
+    selector: 'app-star-mark',
     templateUrl: 'mark.component.html',
     styleUrls: ['mark.component.scss']
 })

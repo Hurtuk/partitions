@@ -21,7 +21,7 @@ import {saveAs as importedSaveAs} from "file-saver";
 import { PageScrollService } from 'ngx-page-scroll-core';
 
 @Component({
-    selector: 'score',
+    selector: 'app-score',
     templateUrl: './score.component.html',
     styleUrls: ['./score.component.scss',
                 './score.medium.component.scss',

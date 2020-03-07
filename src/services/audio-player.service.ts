@@ -3,10 +3,12 @@ import {distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import { OnInit } from "@angular/core/core";
 
 import { Subject, BehaviorSubject } from "rxjs";
+import { Injectable } from "@angular/core";
 
 import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
 
+@Injectable()
 export class AudioPlayerService implements OnInit {
 
     private audio: HTMLAudioElement;

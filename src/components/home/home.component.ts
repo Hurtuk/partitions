@@ -7,7 +7,7 @@ import { NewsService } from '../../services/news.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'home',
+    selector: 'app-home',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss',
                 'home.medium.component.scss',

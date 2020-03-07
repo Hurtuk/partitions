@@ -9,13 +9,11 @@ import { ScoreService } from '../../services/score.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { BandService } from '../../services/band.service';
 
-import { Band } from '../../model/band';
-
 import 'rxjs/Rx';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'header',
+    selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss',
                 './header.medium.component.scss',
@@ -77,7 +75,7 @@ export class HeaderComponent implements OnInit {
         }
     }
 
-    public closeAll(item): void {
+    public closeAll(): void {
         this.resultOpened = false;
         this.searchOpened = false;
     }

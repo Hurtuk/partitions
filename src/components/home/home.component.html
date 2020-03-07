@@ -27,7 +27,7 @@
             <span class="from" *ngIf="score.from && score.from != score.title">{{score.from}}</span>
             <div class="parts">
                 <span class="band" *ngIf="score.band">{{score.band.title}}</span>
-                <instrument-icons [parts]="score.parts"></instrument-icons>
+                <app-instrument-icons [parts]="score.parts"></app-instrument-icons>
             </div>
         </a>
     </div>

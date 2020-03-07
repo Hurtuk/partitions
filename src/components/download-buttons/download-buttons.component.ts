@@ -9,7 +9,7 @@ import {saveAs as importedSaveAs} from "file-saver";
 import { Part } from '../../model/part';
 
 @Component({
-    selector: 'download-buttons',
+    selector: 'app-download-buttons',
     templateUrl: 'download-buttons.component.html',
     styleUrls: ['download-buttons.component.scss']
 })
@@ -19,7 +19,7 @@ export class DownloadButtonsComponent implements OnInit {
 
     public fullScorePart = ScoreService.fullScorePart;
 
-    private openedPdf = false;
+    public openedPdf = false;
 
     constructor(
         private downloadService: DownloadService,

@@ -16,8 +16,8 @@
 <nav>
     <ul>
         <li *ngFor="let item of menu" [class]="'menu-' + item.pathArg">
-            <a (click)="closeAll(item)" [routerLink]="'/scores/' + item.pathArg">{{getBandTitle(item.title)}}</a>
-            <a (click)="closeAll(item)" [routerLink]="'/scores/' + item.pathArg" class="invisible">{{getBandTitle(item.title)}}</a>
+            <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg">{{getBandTitle(item.title)}}</a>
+            <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg" class="invisible">{{getBandTitle(item.title)}}</a>
         </li>
     </ul>
 </nav>

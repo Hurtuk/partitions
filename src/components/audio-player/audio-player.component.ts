@@ -3,7 +3,7 @@ import { Component, OnInit, Input, OnDestroy, OnChanges, ViewChild, ElementRef }
 import { AudioPlayerService } from "../../services/audio-player.service";
 
 @Component({
-    selector: 'audio-player',
+    selector: 'app-audio-player',
     templateUrl: 'audio-player.component.html',
     styleUrls: ['audio-player.component.scss',
                 'audio-player.medium.component.scss']

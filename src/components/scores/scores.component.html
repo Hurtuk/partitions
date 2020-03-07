@@ -32,13 +32,13 @@
                 <option *ngFor="let instr of instruments" [value]="instr | json">{{instr.instrumentName}}</option>
             </select>
         </label>
-        <instrument-icons
+        <app-instrument-icons
             *ngIf="pickedInstruments"
             [parts]="pickedInstruments"
             [clickable]="true"
             [deletable]="true"
             [full-score]="false"
-            (onInstrumentClicked)="unpickInstrument($event)"></instrument-icons>
+            (onInstrumentClicked)="unpickInstrument($event)"></app-instrument-icons>
     </div>
 </form>
 <div *ngIf="results" class="search-results">
@@ -46,7 +46,7 @@
     <ng-container *ngFor="let r of results">
         <div class="scholar-year" *ngIf="yeared && getScholarYear(r)"><span>{{year}}</span></div>
         <a [routerLink]="'/score/' + r.tag">
-            <fav-star *ngIf="r.note == 5"></fav-star>
+            <app-fav-star *ngIf="r.note == 5"></app-fav-star>
             <div class="score-header">
                 <div class="score-header-bg" [style.background-image]="'url(' + getImageUrl(r) + ')'"></div>
                 <div class="titles">
@@ -58,7 +58,7 @@
             <div class="band-info" *ngIf="bandTag">{{r.parts.length}} parts</div>
             <div class="mark-date">
                 <span class="date">{{r.created | datefr: 'MMMM y'}}</span>
-                <star-mark [mark]="r.note"></star-mark>
+                <app-star-mark [mark]="r.note"></app-star-mark>
             </div>
         </a>
     </ng-container>

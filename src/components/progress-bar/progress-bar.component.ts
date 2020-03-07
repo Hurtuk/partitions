@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AudioPlayerService } from '../../services/audio-player.service';
 
 @Component({
-    selector: 'progress-bar',
+    selector: 'app-progress-bar',
     templateUrl: 'progress-bar.component.html',
     styleUrls: ['progress-bar.component.scss']
 })

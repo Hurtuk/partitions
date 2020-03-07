@@ -20,7 +20,7 @@ import 'rxjs/Rx';
 import { DateFrPipe } from '../../shared/pipes/DateFrPipe.pipe';
 
 @Component({
-    selector: 'scores',
+    selector: 'app-scores',
     templateUrl: 'scores.component.html',
     styleUrls: ['scores.component.scss',
                 'scores.medium.component.scss',

@@ -4,7 +4,7 @@ import { Part } from '../../model/part';
 import { ScoreService } from '../../services/score.service';
 
 @Component({
-    selector: 'instrument-icons',
+    selector: 'app-instrument-icons',
     templateUrl: './instrument-icons.component.html',
     styleUrls: ['./instrument-icons.component.scss']
 })

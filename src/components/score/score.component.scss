@@ -1,6 +1,6 @@
 @import '../../shared/styles/theme';
 
-fav-star {
+app-fav-star {
     width: 60px;
     position: absolute;
     z-index: 1;
@@ -25,7 +25,7 @@ fav-star {
         font-size: 1.5em;
         margin-bottom: 8px;
         font-weight: bold;
-        text-shadow: 0 0 1px $color-shadow;
+        text-shadow: 0 0 2px $color-text-shadow;
     }
 }
 
@@ -54,7 +54,7 @@ fav-star {
 }
 
 .length,
-star-mark {
+app-star-mark {
     float: right;
     clear: both;
 }
@@ -65,13 +65,13 @@ star-mark {
     font-size: 13px;
 }
 
-star-mark,
+app-star-mark,
 .created {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-audio-player {
+app-audio-player {
     margin: 0 -10px;
     text-align: right;
 }

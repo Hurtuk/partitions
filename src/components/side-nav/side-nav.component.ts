@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { MenuService } from '../../services/menu.service';
 
 @Component({
-    selector: 'side-nav',
+    selector: 'app-side-nav',
     templateUrl: './side-nav.component.html',
     styleUrls: ['./side-nav.component.scss',
                 './side-nav.large.component.scss'],

@@ -1,7 +1,7 @@
 @import '../../shared/styles/theme';
 
 @media screen and (min-width: $medium-width) {
-    fav-star {
+    app-fav-star {
         width: 80px;
     }
 
@@ -42,7 +42,7 @@
         position: relative;
     }
 
-    instrument-icons {
+    app-instrument-icons {
         display: block;
         margin-top: 30px;
     }

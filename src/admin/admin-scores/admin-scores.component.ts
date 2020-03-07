@@ -8,8 +8,8 @@ import { ScoreService } from '../../services/score.service';
 })
 
 export class AdminScoresComponent implements OnInit {
-    private errors = this.scoreService.getErrors();
-    private scores = this.scoreService.getLatestScores(0);
+    public errors = this.scoreService.getErrors();
+    public scores = this.scoreService.getLatestScores(0);
 
     constructor(private scoreService: ScoreService) { }
 
