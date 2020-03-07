@@ -16,6 +16,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy, OnChanges {
 
     // General variables
     public isPlaying: boolean;
+    public playbackRate: number;
     // Subscription variables
     private currentTimeSubscription: any;
     private fullTimeSubscription: any;
@@ -25,6 +26,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy, OnChanges {
 
     ngOnInit() {
         this.playerService.isPlaying.subscribe(data => this.isPlaying = data);
+        this.playerService.playbackRate.subscribe(data => this.playbackRate = data);
+        this.playbackRate = this.playerService.playbackRate.value;
         this.playerService.stop();
     }
 
@@ -38,6 +41,10 @@ export class AudioPlayerComponent implements OnInit, OnDestroy, OnChanges {
 
     toggleAudio() {
         this.playerService.toggleAudio();
+    }
+
+    changeRate(rate: number) {
+        this.playerService.setPlaybackRate(rate);
     }
 
     ngOnDestroy() {

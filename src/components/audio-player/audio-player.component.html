@@ -1,3 +1,9 @@
+<div class="playbackrate">
+    <input type="radio" id="playback-7" name="playbackrate" [(ngModel)]="playbackRate" [value]="0.7" (ngModelChange)="changeRate($event)" />
+    <label for="playback-7">Lent</label>
+    <input type="radio" id="playback-100" name="playbackrate" [(ngModel)]="playbackRate" [value]="1" (ngModelChange)="changeRate($event)" />
+    <label for="playback-100">Normal</label>
+</div>
 <button (click)="toggleAudio()" [class.play]="!isPlaying" [class.pause]="isPlaying"></button>
 <button (click)="stop()" class="stop"></button>
 <app-progress-bar #progressbar (click)="setTime($event)"></app-progress-bar>

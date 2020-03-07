@@ -161,7 +161,7 @@
                 display: inline-block;
                 vertical-align: top;
                 position: relative;
-                padding: 0 10px;
+                padding: 0 9px;
 
                 &.menu-winds {
                     a {
@@ -200,7 +200,7 @@
                     display: block;
                     line-height: $header-height;
                     position: relative;
-                    min-width: 100px;
+                    min-width: 75px;
                     text-align: center;
                     font-size: 130%;
                     text-transform: uppercase;
@@ -242,6 +242,24 @@
 
         &:hover {
             height: $header-height;
+        }
+    }
+
+    .menu-misc {
+        display: initial;
+    }
+}
+
+@media screen and (min-width: $extra-large-width) {
+    nav {
+        ul {
+            li {
+                padding: 0 10px;
+
+                a {
+                    min-width: 100px;
+                }
+            }
         }
     }
 }

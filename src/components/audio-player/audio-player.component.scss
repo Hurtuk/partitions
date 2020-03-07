@@ -84,3 +84,29 @@ div {
         }
     }
 }
+
+.playbackrate {
+    position: absolute;
+    left: 0;
+    top: 15px;
+
+    label {
+        opacity: .5;
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: .85em;
+    }
+
+    input {
+        display: none;
+
+        &:checked {
+            + label {
+                opacity: 1;
+                color: $color-darkred;
+                font-weight: 900;
+            }
+        }
+    }
+}

@@ -12,10 +12,11 @@ import "rxjs/add/operator/distinctUntilChanged";
 export class AudioPlayerService implements OnInit {
 
     private audio: HTMLAudioElement;
-    public audioUrl: Subject<string> = new Subject<string>();
-    public currentTime: Subject<number> = new Subject<number>();
-    public fullTime: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-    public isPlaying: Subject<boolean> = new Subject<boolean>();
+    public audioUrl = new Subject<string>();
+    public currentTime = new Subject<number>();
+    public fullTime = new BehaviorSubject<number>(0);
+    public isPlaying = new Subject<boolean>();
+    public playbackRate = new BehaviorSubject<number>(1);
     private lastTime: number;
 
     constructor() {
@@ -41,6 +42,7 @@ export class AudioPlayerService implements OnInit {
 
     public setPlayer(audioUrl: string) {
         this.audioUrl.next(audioUrl);
+        this.setPlaybackRate(1);
         this.currentTime.next(0);
         this.audio.src = audioUrl;
         this.audio.oncanplaythrough = () => {
@@ -56,6 +58,11 @@ export class AudioPlayerService implements OnInit {
                 this.currentTime.next(time / 100);
             }
         };
+    }
+
+    public setPlaybackRate(playbackRate: number): void {
+        this.audio.playbackRate = playbackRate;
+        this.playbackRate.next(playbackRate);
     }
 
     public setTime(time: number): void {

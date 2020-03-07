@@ -8,6 +8,7 @@ export class MenuService {
         { pathArg: 'strings', title: 'Orchestre à cordes' },
         { pathArg: 'chamber', title: 'Chambre' },
         { pathArg: 'duets', title: 'Duo' },
+        { pathArg: 'misc', title: 'Divers' },
         { pathArg: '', title: 'Autres / Chercher' }
     ];
 
