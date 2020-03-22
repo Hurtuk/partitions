@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UrlBuilderService {
 
-    private urlPrefix = 'http://www.louiecinephile.fr/partitionsServer/api/';
-    public scoresPath = 'http://www.louiecinephile.fr/partitionsServer/scores';
+    //private urlPrefix = 'http://www.louiecinephile.fr/partitionsServer/api/';
+    //public scoresPath = 'http://www.louiecinephile.fr/partitionsServer/scores';
 
-    /*private urlPrefix = '/partitionsServer/api/';
-    public scoresPath = '/partitionsServer/scores';*/
+    private urlPrefix = '/partitionsServer/api/';
+    public scoresPath = '/partitionsServer/scores';
 
     public buildUrl(request: string, ...args: any[]): string {
         return this.urlPrefix + this.replaceContent(
