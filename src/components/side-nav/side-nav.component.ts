@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
 
 import { MenuService } from '../../services/menu.service';
 
@@ -19,8 +18,7 @@ export class SideNavComponent implements OnInit {
     public menuOpen = false;
 
     constructor(
-        private menuService: MenuService,
-        private router: Router
+        private menuService: MenuService
     ) {}
 
     ngOnInit(): void {

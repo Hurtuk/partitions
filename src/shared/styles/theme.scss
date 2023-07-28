@@ -42,7 +42,7 @@ $large-content-width: 1200px;
 
     > * {
         flex: 0 1;
-        min-width: calc(#{100 / $columns}% - #{$space});
+        min-width: calc(100 / #{$columns '%'} - #{$space});
     }
 }
 

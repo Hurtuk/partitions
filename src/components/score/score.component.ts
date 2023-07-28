@@ -6,7 +6,7 @@ import { DomSanitizer, SafeStyle, Title } from "@angular/platform-browser";impor
 
 
 
-import { PdfViewerComponent, PDFDocumentProxy } from "ng2-pdf-viewer";
+import { PDFDocumentProxy } from "ng2-pdf-viewer";
 
 import { ScoreService } from '../../services/score.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';

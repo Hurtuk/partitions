@@ -11,7 +11,7 @@ export class AuthService {
     redirectUrl: string;
 
     login(): Observable<boolean> {
-        return observableOf(true).pipe(delay(1000),tap(val => this.isLoggedIn = true),);
+        return observableOf(true).pipe(delay(1000),tap(() => this.isLoggedIn = true),);
     }
 
     logout(): void {

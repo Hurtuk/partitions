@@ -3,7 +3,6 @@ import {combineLatest as observableCombineLatest, of as observableOf,  Observabl
 
 import {switchMap} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Score } from '../../model/score';
 import { BandService } from '../../services/band.service';
 import { Band } from '../../model/band';

@@ -1,5 +1,5 @@
 
-import {forkJoin as observableForkJoin,  Observable } from 'rxjs';
+import {forkJoin as observableForkJoin } from 'rxjs';
 
 import {map, distinctUntilChanged, debounceTime} from 'rxjs/operators';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
@@ -8,9 +8,6 @@ import { MenuService } from '../../services/menu.service';
 import { ScoreService } from '../../services/score.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { BandService } from '../../services/band.service';
-
-import 'rxjs/Rx';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -35,7 +32,6 @@ export class HeaderComponent implements OnInit {
 
     constructor(
         private menuService: MenuService,
-        private router: Router,
         private scoreService: ScoreService,
         private scoreMetadataService: ScoreMetadataService,
         private bandService: BandService

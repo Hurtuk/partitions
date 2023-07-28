@@ -1,7 +1,7 @@
 
 import {combineLatest as observableCombineLatest } from 'rxjs';
 
-import {map, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -14,8 +14,6 @@ import { MenuService } from '../../services/menu.service';
 import { Band } from '../../model/band';
 import { Part } from '../../model/part';
 import { Score } from '../../model/score';
-
-import 'rxjs/Rx';
 
 import { DateFrPipe } from '../../shared/pipes/DateFrPipe.pipe';
 

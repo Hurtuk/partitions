@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { Part } from '../../model/part';
 import { ScoreService } from '../../services/score.service';
@@ -19,7 +19,7 @@ export class InstrumentIconsComponent {
     public clickedPart: Part;
     public fullScorePart = ScoreService.fullScorePart;
 
-    constructor(private scoreService: ScoreService)  {}
+    constructor()  {}
 
     public getImageUrl(part: Part): string {
         return './assets/images/instruments/' + part.instrumentTag + '.png';
