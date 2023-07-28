@@ -25,6 +25,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "classlist.js": "^1.1.20150312",
+    "core-js": "^3.32.0",
     "file-saver": "^2.0.2",
     "intl": "^1.2.5",
     "ng2-pdf-viewer": "^9.1.5",
