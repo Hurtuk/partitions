@@ -100,6 +100,15 @@ app-audio-player {
     display: none;
 }
 
+.youtube {
+    iframe {
+        width: calc(100% + 20px);
+        height: 150px;
+        margin: 0 -10px -10px;
+        display: block;
+    }
+}
+
 .comment {
     display: none;
 }

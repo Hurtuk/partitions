@@ -9,7 +9,7 @@
     <div *ngFor="let n of latestNews | async">
         <!--<div class="news-header">
             <div class="news-date">{{n.date | datefr: 'd MMMM y'}}</div>
-            <h4 class="news-title" [innerHTML]="n.title | safeHtml"></h4>
+            <h4 class="news-title" [innerHTML]="n.title | safe"></h4>
         </div>-->
         <div class="news-content">
             <img src="assets/15340059192.png" height="180" style="float: left; margin-right: 10px">

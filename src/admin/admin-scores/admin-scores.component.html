@@ -1,5 +1,5 @@
-<ul class="errors" *ngIf="errors">
-    <li *ngFor="let e of errors | async" [innerHTML]="e"></li>
+<ul class="errors" *ngIf="(errors | async) as errorsArray">
+    <li *ngFor="let e of errorsArray" [innerHTML]="e"></li>
 </ul>
 <table>
     <tbody>

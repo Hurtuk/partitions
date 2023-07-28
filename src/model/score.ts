@@ -14,6 +14,7 @@ export class Score {
         public tags: string[],
         public parts: Part[],
         public band: Band,
-        public note: number
+        public note: number,
+        public youtube?: string
     ) {}
 }

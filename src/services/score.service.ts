@@ -67,6 +67,7 @@ export class ScoreService {
         formData.append('band_name', score.band.title);
         formData.append('note', '' + score.note);
         formData.append('commentary', score.comment);
+        formData.append('youtube', score.youtube);
         formData.append('tag', score.tag);
         if (score.id === -1) {
             let k = 0;
@@ -130,7 +131,8 @@ export class ScoreService {
             json.tags,
             json.parts ? (json.parts as any[]).map(part => new Part(part.tag, part.instrument)) : null,
             new Band(json.id_band, json.name_band, json.tag_band),
-            json.note
+            json.note,
+            json.youtube
         );
 
         if (json.parts) {

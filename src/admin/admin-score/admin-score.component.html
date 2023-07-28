@@ -12,6 +12,7 @@
             </select>
         </label>
         <label>Note : <input type="number" [(ngModel)]="score.note" name="note" /></label>
+        <label>Youtube : <input type="text" [(ngModel)]="score.youtube" name="youtube" /></label>
         <label>Commentaire : <textarea rows="3" cols="40" [(ngModel)]="score.comment" name="comment"></textarea></label>
         <button (click)="saveData()" *ngIf="score.id !== -1">Sauvegarder les infos</button>
         <span *ngIf="dataSaved">Données enregistrées !</span>

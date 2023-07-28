@@ -32,7 +32,6 @@ import { NewsService } from '../services/news.service';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { DateFrPipe } from '../shared/pipes/DateFrPipe.pipe';
-import { SafeHtmlPipe } from '../shared/pipes/SafeHtmlPipe.pipe';
 import { DatePipe } from '@angular/common';
 import { AuthGuard } from '../services/auth-guard.service';
 import { AuthService } from '../services/auth.service';
@@ -40,6 +39,7 @@ import { LoginComponent } from '../admin/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { ShareButtonsModule } from '@ngx-share/buttons';
+import { SafePipe } from 'src/shared/pipes/SafePipe.pipe';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { ShareButtonsModule } from '@ngx-share/buttons';
     LoginComponent,
 
     DateFrPipe,
-    SafeHtmlPipe
+    SafePipe
   ],
   imports: [
     BrowserModule,

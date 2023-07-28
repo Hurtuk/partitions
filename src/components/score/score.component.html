@@ -6,7 +6,7 @@
     </div>
 </div>
 <div class="score-content" #scorecontent>
-    <div class="score-data" [class.fixed]="fixed">
+    <div class="score-data" [class.fixed]="fixed && selectedPart">
         <div class="fieldset technical-data">
             <div class="legend">Fiche technique</div>
             <div class="composer">Composé par {{score?.by}}</div>
@@ -30,6 +30,12 @@
             <div class="legend">Télécharger</div>
             <app-download-buttons [score]="score"></app-download-buttons>
         </div>
+
+        <div class="fieldset youtube" *ngIf="score?.youtube">
+            <div class="legend">Live</div>
+            <iframe [src]="('https://www.youtube.com/embed/' + score?.youtube) | safe:'resourceUrl'" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
         <div class="fieldset comment">
             <div class="legend">Commentaire</div>
             <p [innerHTML]="score?.comment"></p>
