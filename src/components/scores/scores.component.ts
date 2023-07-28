@@ -1,7 +1,7 @@
 
 import {combineLatest as observableCombineLatest } from 'rxjs';
 
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -16,6 +16,7 @@ import { Part } from '../../model/part';
 import { Score } from '../../model/score';
 
 import { DateFrPipe } from '../../shared/pipes/DateFrPipe.pipe';
+import { AudioPlayerService } from 'src/services/audio-player.service';
 
 @Component({
     selector: 'app-scores',
@@ -77,6 +78,7 @@ export class ScoresComponent implements OnInit {
 
     public search(): void {
         this.scoreService.searchScoreByCritera(this.title, this.bandTag, this.pickedInstruments, this.composer, this.pickedTags)
+                        .pipe(tap(v => v.forEach(vv => vv.scholarYear = this.metadataService.getScholarYear(vv))))
                         .subscribe(x => this.results = x);
     }
 
@@ -85,10 +87,13 @@ export class ScoresComponent implements OnInit {
     }
 
     public getScholarYear(score: Score) {
-        const current = this.metadataService.getScholarYear(score);
-        const display = this.year !== current;
-        this.year = current;
+        const display = this.year !== score.scholarYear;
+        this.year = score.scholarYear;
         return display;
+    }
+
+    public getTotalDuration(year: string): string {
+        return AudioPlayerService.formatTime(this.results.filter(r => r.scholarYear === year).reduce((prev, cur) => prev += cur.duration, 0), true);
     }
 
     ngOnInit() {
@@ -112,7 +117,7 @@ export class ScoresComponent implements OnInit {
                         instruments = params['instrument'];
                         this.pickedTags = params['tag'] ? params['tag'].split(',') : [];
                     }));
-                    observableCombineLatest(bandsObservable, paramsObservable, composersObservable)
+                    observableCombineLatest([bandsObservable, paramsObservable, composersObservable])
                         .subscribe(() => {
                             this.results = [];
                             this.pickedInstruments = [];

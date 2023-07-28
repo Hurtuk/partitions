@@ -39,10 +39,11 @@ $large-content-width: 1200px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: $space;
 
     > * {
         flex: 0 1;
-        min-width: calc(100 / #{$columns '%'} - #{$space});
+        min-width: calc(100% / $columns - $space * 2);
     }
 }
 

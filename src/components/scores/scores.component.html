@@ -44,7 +44,7 @@
 <div *ngIf="results" class="search-results">
     <div class="results-title" *ngIf="searching">{{results.length + ' résultat' + (results.length > 1 ? 's' : '')}}</div>
     <ng-container *ngFor="let r of results">
-        <div class="scholar-year" *ngIf="yeared && getScholarYear(r)"><span>{{year}}</span></div>
+        <div class="scholar-year" *ngIf="yeared && getScholarYear(r)"><span [title]="'Durée du programme : ' + getTotalDuration(r.scholarYear)">{{year}}</span></div>
         <a [routerLink]="'/score/' + r.tag">
             <app-fav-star *ngIf="r.note == 5"></app-fav-star>
             <div class="score-header">

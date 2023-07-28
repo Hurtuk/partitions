@@ -39,6 +39,7 @@ import { LoginComponent } from '../admin/login/login.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { SafePipe } from 'src/shared/pipes/SafePipe.pipe';
+import { ShareModule } from 'ngx-sharebuttons';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { SafePipe } from 'src/shared/pipes/SafePipe.pipe';
     FormsModule,
     AdminModule,
     HttpClientModule,
-    NgxPageScrollCoreModule
+    NgxPageScrollCoreModule,
+    ShareModule
   ],
   providers: [
     ScoreService,

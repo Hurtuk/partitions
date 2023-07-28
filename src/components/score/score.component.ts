@@ -84,9 +84,10 @@ export class ScoreComponent implements OnInit {
 
     public similHeight(pdf: PDFDocumentProxy): void {
         this.loading = false;
-        this.similiHeight = this.sanitizer.bypassSecurityTrustStyle(
-            "calc((" + this.pdfViewer.nativeElement.offsetWidth + " - 20px) * (29.7 / 21) * " + pdf.numPages + ")"
-        );
+        /*this.similiHeight = this.sanitizer.bypassSecurityTrustStyle(
+            "calc((" + this.pdfViewer.nativeElement.offsetWidth + "px - 20px) * (29.7 / 21) * " + pdf.numPages + ")"
+        );*/
+        this.similiHeight = "calc((" + this.pdfViewer.nativeElement.offsetWidth + "px - 20px) * (29.7 / 21) * " + pdf.numPages + ")";
         this.pageScrollService.scroll({
             document: this.document,
             scrollTarget: '.score-parts'

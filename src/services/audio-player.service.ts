@@ -5,9 +5,6 @@ import { OnInit } from "@angular/core";
 import { Subject, BehaviorSubject } from "rxjs";
 import { Injectable } from "@angular/core";
 
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
-
 @Injectable()
 export class AudioPlayerService implements OnInit {
 
@@ -23,8 +20,13 @@ export class AudioPlayerService implements OnInit {
         this.audio = new Audio();
     }
 
-    public static formatTime(time: number): string {
-        return Math.floor(time / 60) + ':' + this.zeros(Math.floor(time % 60));
+    public static formatTime(time: number, full = false): string {
+        const m = Math.floor(time / 60);
+        const s = Math.floor(time % 60);
+        if (full) {
+            return (s < 30 ? m : m + 1) + ' minutes';
+        }
+        return m + ':' + this.zeros(s);
     }
 
     private static zeros(nb: number) {

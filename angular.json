@@ -35,6 +35,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "pdfjs-dist",
+              "file-saver"
+            ],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",

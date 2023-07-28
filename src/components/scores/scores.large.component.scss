@@ -12,4 +12,8 @@
             margin-right: 0 !important;
         }
     }
+    
+    .search-results {
+        @include columned-flex(3, 16px);
+    }
 }

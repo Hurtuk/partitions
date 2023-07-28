@@ -8,26 +8,6 @@
         background-color: $color-beige;
     }
 
-    /*.news-header {
-        background-color: $color-orange;
-        padding: 5px 10px;
-
-        .news-date {
-            font-style: italic;
-            float: right;
-            color: $color-white;
-            font-size: 90%;
-            margin-top: 2px;
-        }
-
-        .news-title {
-            font-weight: bold;
-            color: $color-white;
-            margin: 0;
-            font-size: 120%;
-        }
-    }*/
-
     .news-content {
         padding: 5px;
     }
@@ -66,6 +46,7 @@
                 bottom: 0;
                 z-index: 1;
                 opacity: .75;
+                transition: opacity .1s;
 
                 ~ * {
                     position: relative;

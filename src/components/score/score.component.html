@@ -9,7 +9,7 @@
     <div class="score-data" [class.fixed]="fixed && selectedPart">
         <div class="fieldset technical-data">
             <div class="legend">Fiche technique</div>
-            <div class="composer">Composé par {{score?.by}}</div>
+            <div class="composer" *ngIf="score?.by">Composé par {{score?.by}}</div>
             <div class="length">{{audioLength}}</div>
             <div class="band">
                 <a [routerLink]="'/scores/' + score?.band.tag">{{score?.band.title}}</a>
@@ -65,6 +65,7 @@
                         [show-all]="true"
                         [original-size]="false"
                         [render-text]="true"
+                        [style.height]="similiHeight"
                         (after-load-complete)="similHeight($event)"
             ></pdf-viewer>
         </div>

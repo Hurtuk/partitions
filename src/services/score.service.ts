@@ -132,7 +132,8 @@ export class ScoreService {
             json.parts ? (json.parts as any[]).map(part => new Part(part.tag, part.instrument)) : null,
             new Band(json.id_band, json.name_band, json.tag_band),
             json.note,
-            json.youtube
+            json.youtube,
+            json.duration
         );
 
         if (json.parts) {
