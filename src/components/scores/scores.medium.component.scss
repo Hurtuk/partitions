@@ -15,20 +15,16 @@
     }
     
     .score-header-bg {
-        display: block;
-        background-position: center center;
-        background-size: cover;
         height: 120px;
         margin: -8px -8px 0;
         opacity: .85;
-    }
-
-    .score-header {
-        position: relative;
+        position: initial;
     }
 
     .titles {
         position: absolute;
+        height: auto;
+        display: initial;
         bottom: 5px;
         left: 5px;
         width: calc(100% - 5px);
@@ -42,6 +38,7 @@
             overflow: hidden;
             max-width: calc(100% - 95px);
             text-overflow: ellipsis;
+            line-height: initial;
         }
     }
 

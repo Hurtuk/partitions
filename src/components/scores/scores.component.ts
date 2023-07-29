@@ -49,6 +49,7 @@ export class ScoresComponent implements OnInit {
     public yeared = false;
 
     public year: string;
+    public durationsPerYear: {[year: string]: string} = {};
 
     constructor(private route: ActivatedRoute,
                 private bandService: BandService,
@@ -78,7 +79,13 @@ export class ScoresComponent implements OnInit {
 
     public search(): void {
         this.scoreService.searchScoreByCritera(this.title, this.bandTag, this.pickedInstruments, this.composer, this.pickedTags)
-                        .pipe(tap(v => v.forEach(vv => vv.scholarYear = this.metadataService.getScholarYear(vv))))
+                        .pipe(tap(v => {
+                            v.forEach(vv => vv.scholarYear = this.metadataService.getScholarYear(vv));
+                            const differentYears = [...new Set(v.map(vv => vv.scholarYear))];
+                            differentYears.forEach((dy: string) =>
+                                this.metadataService.getTotalDuration(v.filter(vv => vv.scholarYear === dy).map(vv => vv.tag))
+                                    .subscribe(d => this.durationsPerYear[dy] = AudioPlayerService.formatTime(d, true)));
+                        }))
                         .subscribe(x => this.results = x);
     }
 
@@ -86,14 +93,10 @@ export class ScoresComponent implements OnInit {
         return this.metadataService.getImageUrl(score);
     }
 
-    public getScholarYear(score: Score) {
+    public displayScholarYear(score: Score) {
         const display = this.year !== score.scholarYear;
         this.year = score.scholarYear;
         return display;
-    }
-
-    public getTotalDuration(year: string): string {
-        return AudioPlayerService.formatTime(this.results.filter(r => r.scholarYear === year).reduce((prev, cur) => prev += cur.duration, 0), true);
     }
 
     ngOnInit() {

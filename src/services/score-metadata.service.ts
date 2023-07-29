@@ -52,6 +52,11 @@ export class ScoreMetadataService {
                         })));
     }
 
+    public getTotalDuration(tags: string[]): Observable<number> {
+        return this.http.get(this.urlBuilder.buildUrl('getTotalDuration', tags.join(',')))
+                            .pipe(map((response: Response) => response.data));
+    }
+
     public getScholarYear(score: Score) {
         const y = score.created.getFullYear();
         if (score.created.getMonth() >= 5 || (score.created.getMonth() === 4 && score.created.getDate() >= 20)) {

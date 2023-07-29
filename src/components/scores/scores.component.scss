@@ -58,8 +58,26 @@ app-fav-star {
     }
 }
 
+.score-header {
+    position: relative;
+}
+
 .score-header-bg {
-    display: none;
+    display: block;
+    background-position: center center;
+    background-size: cover;
+    height: 90px;
+    top: -8px;
+    left: -8px;
+    right: -10px;
+    position: absolute;
+}
+
+.titles {
+    position: relative;
+    height: 80px;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .results-title {
@@ -79,6 +97,7 @@ app-fav-star {
     h4 {
         color: $color-darkgray;
         margin: 0;
+        line-height: .5em;
     }
 
     $box-padding: 8px;
@@ -131,7 +150,7 @@ app-fav-star {
 
     .band-info {
         position: absolute;
-        bottom: $box-padding;
+        bottom: $box-padding - 3px;
         left: $box-padding;
         font-weight: bold;
         font-size: 90%;
@@ -139,7 +158,7 @@ app-fav-star {
 
     .mark-date {
         position: absolute;
-        bottom: $box-padding;
+        bottom: $box-padding - 3px;
         right: 50px;
         text-align: right;
         font-style: italic;
@@ -147,6 +166,10 @@ app-fav-star {
 
         > * {
             display: block;
+        }
+
+        .date {
+            display: none;
         }
     }
 }
