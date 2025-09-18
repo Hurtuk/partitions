@@ -1,7 +1,11 @@
 <a class="pdf-button" (click)="openPdf()">PDF</a>
 <a class="mp3-button" (click)="downloadMp3()">MP3</a>
 <a class="mid-button" (click)="downloadMidi()">MIDI</a>
-<ul class="pdf-parts" *ngIf="openedPdf">
-    <li (click)="downloadPdf(fullScorePart)">{{partName(fullScorePart)}}</li>
-    <li *ngFor="let part of score.parts" (click)="downloadPdf(part)">{{partName(part)}}</li>
-</ul>
+@if (openedPdf) {
+    <ul class="pdf-parts">
+        <li (click)="downloadPdf(fullScorePart)">{{partName(fullScorePart)}}</li>
+        @for (part of score.parts; track $index) {
+            <li (click)="downloadPdf(part)">{{partName(part)}}</li>
+        }
+    </ul>
+}

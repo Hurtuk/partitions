@@ -1,1 +1,3 @@
-<span class="star" *ngFor="let s of marks" [class.black]="!s"></span>
+@for (s of marks; track $index) {
+  <span class="star" [class.black]="!s"></span>
+}

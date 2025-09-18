@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuService } from '../../services/menu.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-side-nav',
     templateUrl: './side-nav.component.html',
     styleUrls: ['./side-nav.component.scss',
-                './side-nav.large.component.scss'],
+        './side-nav.large.component.scss'],
     providers: [
         MenuService
-    ]
+    ],
+    imports: [RouterLink]
 })
 
 export class SideNavComponent implements OnInit {

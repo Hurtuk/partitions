@@ -1,43 +1,63 @@
-<form *ngIf="score">
-    <fieldset>
-        <legend>Informations</legend>
-        <label>Tag : <input type="text" [disabled]="score.id !== -1" [(ngModel)]="score.tag" name="tag" /></label>
-        <label>Titre : <input type="text" [(ngModel)]="score.title" name="title" /></label>
-        <label>Source : <input type="text" [(ngModel)]="score.from" name="source" /></label>
-        <label>Compositeur : <input type="text" [(ngModel)]="score.by" name="composer" /></label>
-        <label>Création : <input type="date" [ngModel]="score.created | date:'yyyy-MM-dd'" (change)="updateDate($event)" name="created" /></label>
-        <label>Groupe :
-            <select name="band" [(ngModel)]="score.band">
-                <option *ngFor="let b of bands" [ngValue]="b">{{b.title}}</option>
-            </select>
-        </label>
-        <label>Note : <input type="number" [(ngModel)]="score.note" name="note" /></label>
-        <label>Youtube : <input type="text" [(ngModel)]="score.youtube" name="youtube" /></label>
-        <label>Commentaire : <textarea rows="3" cols="40" [(ngModel)]="score.comment" name="comment"></textarea></label>
-        <button (click)="saveData()" *ngIf="score.id !== -1">Sauvegarder les infos</button>
-        <span *ngIf="dataSaved">Données enregistrées !</span>
-    </fieldset>
-    <fieldset>
-        <legend>Fichiers</legend>
-        <label>Fichier MP3 : <input type="file" (change)="mp3Change($event)" placeholder="Upload file" accept=".mp3"/></label>
-        <label>Fichier MIDI : <input type="file" (change)="midChange($event)" placeholder="Upload file" accept=".mid"/></label>
-        <label>Fichier MUS : <input type="file" (change)="musChange($event)" placeholder="Upload file" accept=".mus"/></label>
-        <label>Image (1200x400) : <input type="file" (change)="imageChange($event)" placeholder="Upload file" accept=".jpg"/></label>
+@if (score) {
+    <form>
         <fieldset>
-            <legend>Parties</legend>
-            <label>Conducteur : <input type="file" (change)="conductorChange($event)" placeholder="Upload file" accept=".pdf"/></label>
-            <div *ngFor="let p of score.parts; let i = index">
-                <select name="{{'instrument' + i}}" [disabled]="score.id != -1" (change)="instrumentChange($event, i)">
-                    <option></option>
-                    <option *ngFor="let ins of instruments" [value]="toStr(ins)" [selected]="p.instrumentTag === ins.instrumentTag">{{ins.instrumentName}}</option>
+            <legend>Informations</legend>
+            <label>Tag : <input type="text" [disabled]="score.id !== -1" [(ngModel)]="score.tag" name="tag" /></label>
+            <label>Titre : <input type="text" [(ngModel)]="score.title" name="title" /></label>
+            <label>Source : <input type="text" [(ngModel)]="score.from" name="source" /></label>
+            <label>Compositeur : <input type="text" [(ngModel)]="score.by" name="composer" /></label>
+            <label>Création : <input type="date" [ngModel]="score.created | date:'yyyy-MM-dd'" (change)="updateDate($event)" name="created" /></label>
+            <label>Groupe :
+                <select name="band" [(ngModel)]="score.band">
+                    @for (b of bands; track $index) {
+                        <option [ngValue]="b">{{b.title}}</option>
+                    }
                 </select>
-                <input type="file" (change)="partChange($event, i)" placeholder="Upload file" accept=".pdf"/>
-            </div>
-            <button (click)="addPart()" *ngIf="score.id === -1">Ajouter</button>
+            </label>
+            <label>Note : <input type="number" [(ngModel)]="score.note" name="note" /></label>
+            <label>Youtube : <input type="text" [(ngModel)]="score.youtube" name="youtube" /></label>
+            <label>Commentaire : <textarea rows="3" cols="40" [(ngModel)]="score.comment" name="comment"></textarea></label>
+            @if (score.id !== -1) {
+                <button (click)="saveData()">Sauvegarder les infos</button>
+            }
+            @if (dataSaved) {
+                <span>Données enregistrées !</span>
+            }
         </fieldset>
-        <button (click)="saveFiles()" *ngIf="score.id !== -1">Sauvegarder les fichiers</button>
-        <span *ngIf="filesSaved">Fichiers sauvegardés !</span>
-    </fieldset>
-    <button class="final-button" (click)="saveAll()">Tout enregistrer</button>
-    <span *ngIf="allSaved">Partition sauvegardée !</span>
-</form>
+        <fieldset>
+            <legend>Fichiers</legend>
+            <label>Fichier MP3 : <input type="file" (change)="mp3Change($event)" placeholder="Upload file" accept=".mp3"/></label>
+            <label>Fichier MIDI : <input type="file" (change)="midChange($event)" placeholder="Upload file" accept=".mid"/></label>
+            <label>Fichier MUS : <input type="file" (change)="musChange($event)" placeholder="Upload file" accept=".mus"/></label>
+            <label>Image (1200x400) : <input type="file" (change)="imageChange($event)" placeholder="Upload file" accept=".jpg"/></label>
+            <fieldset>
+                <legend>Parties</legend>
+                <label>Conducteur : <input type="file" (change)="conductorChange($event)" placeholder="Upload file" accept=".pdf"/></label>
+                @for (p of score.parts; let i = $index; track $index) {
+                    <div>
+                        <select name="{{'instrument' + i}}" [disabled]="score.id != -1" (change)="instrumentChange($event, i)">
+                            <option></option>
+                            @for (ins of instruments; track $index) {
+                                <option [value]="toStr(ins)" [selected]="p.instrumentTag === ins.instrumentTag">{{ins.instrumentName}}</option>
+                            }
+                        </select>
+                        <input type="file" (change)="partChange($event, i)" placeholder="Upload file" accept=".pdf"/>
+                    </div>
+                }
+                @if (score.id === -1) {
+                    <button (click)="addPart()">Ajouter</button>
+                }
+            </fieldset>
+            @if (score.id !== -1) {
+                <button (click)="saveFiles()">Sauvegarder les fichiers</button>
+            }
+            @if (filesSaved) {
+                <span>Fichiers sauvegardés !</span>
+            }
+        </fieldset>
+        <button class="final-button" (click)="saveAll()">Tout enregistrer</button>
+        @if (filesSaved) {
+            <span>Partition sauvegardée !</span>
+        }
+    </form>
+}

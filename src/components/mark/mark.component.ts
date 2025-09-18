@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-star-mark',

@@ -1,31 +1,34 @@
 
 import {switchMap} from 'rxjs/operators';
-import { Component, OnInit, Inject, ViewChild, ElementRef, HostListener } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { DomSanitizer, SafeStyle, Title } from "@angular/platform-browser";import { DOCUMENT } from "@angular/common";
-
-
-
-import { PDFDocumentProxy } from "ng2-pdf-viewer";
-
+import { Component, OnInit, Inject, ViewChild, ElementRef, HostListener, DOCUMENT } from '@angular/core';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { DomSanitizer, SafeStyle, Title } from "@angular/platform-browser";
+import { PDFDocumentProxy, PdfViewerModule } from "ng2-pdf-viewer";
 import { ScoreService } from '../../services/score.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { AudioPlayerService } from '../../services/audio-player.service';
 import { DownloadService } from '../../services/download.service';
 import { BrowserService } from '../../services/browser.service';
-
 import { Score } from '../../model/score';
 import { Part } from "../../model/part";
-
 import {saveAs as importedSaveAs} from "file-saver";
 import { PageScrollService } from 'ngx-page-scroll-core';
+import { FavStarComponent } from '../fav-star/fav-star.component';
+import { MarkComponent } from '../mark/mark.component';
+import { SafePipe } from 'src/shared/pipes/SafePipe.pipe';
+import { SocialShareButtonsComponent } from '../share-buttons/share-buttons.component';
+import { InstrumentIconsComponent } from '../instrument-icons/instrument-icons.component';
+import { DatePipe } from '@angular/common';
+import { AudioPlayerComponent } from '../audio-player/audio-player.component';
+import { DownloadButtonsComponent } from '../download-buttons/download-buttons.component';
 
 @Component({
     selector: 'app-score',
     templateUrl: './score.component.html',
     styleUrls: ['./score.component.scss',
-                './score.medium.component.scss',
-                './score.large.component.scss']
+        './score.medium.component.scss',
+        './score.large.component.scss'],
+    imports: [FavStarComponent, RouterLink, MarkComponent, SafePipe, SocialShareButtonsComponent, InstrumentIconsComponent, PdfViewerModule, DatePipe, AudioPlayerComponent, DownloadButtonsComponent]
 })
 
 export class ScoreComponent implements OnInit {

@@ -1,12 +1,15 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, ViewChild, ElementRef } from '@angular/core';
 
 import { AudioPlayerService } from "../../services/audio-player.service";
+import { FormsModule } from '@angular/forms';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 
 @Component({
     selector: 'app-audio-player',
     templateUrl: 'audio-player.component.html',
     styleUrls: ['audio-player.component.scss',
-                'audio-player.medium.component.scss']
+        'audio-player.medium.component.scss'],
+    imports: [FormsModule, ProgressBarComponent]
 })
 
 export class AudioPlayerComponent implements OnInit, OnDestroy, OnChanges {

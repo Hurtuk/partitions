@@ -1,11 +1,15 @@
 <ul [class.clickable]="clickable" [class.deletable]="deletable">
-    <li *ngIf="fullScore"
-        class="full-score"
-        (click)="instrumentClicked(fullScorePart)"
-        [class.clicked]="clickedPart === fullScorePart"></li>
-    <li *ngFor="let part of parts"
-        title="{{getInstrumentTitle(part)}}"
-        (click)="instrumentClicked(part)"
-        [class.clicked]="clickedPart === part"
-        [style.background-image]="'url(' + getImageUrl(part) + ')'"></li>
+    @if (fullScore) {
+        <li
+            class="full-score"
+            (click)="instrumentClicked(fullScorePart)"
+            [class.clicked]="clickedPart === fullScorePart"></li>
+    }
+    @for (part of parts; track $index) {
+        <li
+            title="{{getInstrumentTitle(part)}}"
+            (click)="instrumentClicked(part)"
+            [class.clicked]="clickedPart === part"
+            [style.background-image]="'url(' + getImageUrl(part) + ')'"></li>
+    }
 </ul>

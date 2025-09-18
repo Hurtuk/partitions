@@ -10,11 +10,14 @@ import { ScoreService } from '../../services/score.service';
 import { Part } from '../../model/part';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'admin-score',
     templateUrl: 'admin-score.component.html',
-    styleUrls: ['admin-score.component.scss']
+    styleUrls: ['admin-score.component.scss'],
+    imports: [FormsModule, DatePipe]
 })
 
 export class AdminScoreComponent implements OnInit {

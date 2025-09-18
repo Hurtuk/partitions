@@ -1,30 +1,32 @@
 
 import {combineLatest as observableCombineLatest } from 'rxjs';
-
 import {map, tap} from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-
 import { BandService } from '../../services/band.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { ScoreService } from '../../services/score.service';
 import { MenuService } from '../../services/menu.service';
-
 import { Band } from '../../model/band';
 import { Part } from '../../model/part';
 import { Score } from '../../model/score';
-
 import { DateFrPipe } from '../../shared/pipes/DateFrPipe.pipe';
 import { AudioPlayerService } from 'src/services/audio-player.service';
+import { FormsModule } from '@angular/forms';
+import { InstrumentIconsComponent } from '../instrument-icons/instrument-icons.component';
+import { FavStarComponent } from '../fav-star/fav-star.component';
+import { MarkComponent } from '../mark/mark.component';
+import { JsonPipe } from '@angular/common';
 
 @Component({
     selector: 'app-scores',
     templateUrl: 'scores.component.html',
     styleUrls: ['scores.component.scss',
-                'scores.medium.component.scss',
-                'scores.large.component.scss'],
-    providers: [ DateFrPipe, MenuService ]
+        'scores.medium.component.scss',
+        'scores.large.component.scss'],
+    providers: [DateFrPipe, MenuService],
+    imports: [FormsModule, InstrumentIconsComponent, RouterLink, FavStarComponent, MarkComponent, DateFrPipe, JsonPipe]
 })
 
 export class ScoresComponent implements OnInit {

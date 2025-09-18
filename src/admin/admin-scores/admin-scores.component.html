@@ -1,9 +1,13 @@
-<ul class="errors" *ngIf="(errors | async) as errorsArray">
-    <li *ngFor="let e of errorsArray" [innerHTML]="e"></li>
-</ul>
+@if (errors | async; as errorsArray) {
+    <ul class="errors">
+        @for (e of errorsArray; track $index) {
+            <li [innerHTML]="e"></li>
+        }
+    </ul>
+}
 <table>
     <tbody>
-        <ng-container *ngFor="let s of scores | async">
+        @for (s of scores | async; track $index) {
             <tr>
                 <td><a [routerLink]="['/admin/score', {tag:s.tag}]">{{s.title}}</a></td>
                 <td rowspan="2">{{s.tag}}</td>
@@ -13,6 +17,6 @@
                 <td>{{s.from}}</td>
                 <td><app-star-mark [mark]="s.note"></app-star-mark></td>
             </tr>
-        </ng-container>
+        }
     </tbody>
 </table>

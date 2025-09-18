@@ -15,47 +15,69 @@
 <h1><a routerLink="/"><img src="./assets/images/logo2.png" alt="L'Ouïe Cinéphile" /></a></h1>
 <nav>
     <ul>
-        <li *ngFor="let item of menu" [class]="'menu-' + item.pathArg">
-            <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg">{{getBandTitle(item.title)}}</a>
-            <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg" class="invisible">{{getBandTitle(item.title)}}</a>
-        </li>
+        @for (item of menu; track $index) {
+            <li [class]="'menu-' + item.pathArg">
+                <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg">{{getBandTitle(item.title)}}</a>
+                <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg" class="invisible">{{getBandTitle(item.title)}}</a>
+            </li>
+        }
     </ul>
 </nav>
 <div class="search-results" [class.open]="resultOpened">
     <button class="close-results" (click)="resultOpened = false; searchOpened = false"></button>
-    <div class="score-results" [class.full-line]="allOpen()" *ngIf="searchResults && searchResults[0].length">
-        <h2>Partitions</h2>
-        <div>
-            <a (click)="closeAll()" [routerLink]="'/score/' + score.tag" *ngFor="let score of searchResults[0]">
-                <div class="score-title">{{score.title}}</div>
-                <div class="score-band">{{score.band.title}}</div>
-            </a>
+    @if (searchResults && searchResults[0].length) {
+        <div class="score-results" [class.full-line]="allOpen()">
+            <h2>Partitions</h2>
+            <div>
+                @for (score of searchResults[0]; track $index) {
+                    <a (click)="closeAll()" [routerLink]="'/score/' + score.tag">
+                        <div class="score-title">{{score.title}}</div>
+                        <div class="score-band">{{score.band.title}}</div>
+                    </a>
+                }
+            </div>
         </div>
-    </div>
+    }
     <div class="others">
-        <div class="band-results" *ngIf="searchResults && searchResults[1].length">
-            <h2>Ensembles</h2>
-            <div>
-                <a (click)="closeAll()" [routerLink]="'/scores/' + band.tag" *ngFor="let band of searchResults[1]">{{band.name}} ({{band.nb}})</a>
+        @if (searchResults && searchResults[1].length) {
+            <div class="band-results">
+                <h2>Ensembles</h2>
+                <div>
+                    @for (band of searchResults[1]; track $index) {
+                        <a (click)="closeAll()" [routerLink]="'/scores/' + band.tag">{{band.name}} ({{band.nb}})</a>
+                    }
+                </div>
             </div>
-        </div>
-        <div class="instruments-results" *ngIf="searchResults && searchResults[2].length">
-            <h2>Instruments</h2>
-            <div>
-                <a (click)="closeAll()" [routerLink]="['/scores', {instrument:instrument.instrument.instrumentTag}]" *ngFor="let instrument of searchResults[2]">{{instrument.instrument.instrumentName}} ({{instrument.nb}})</a>
+        }
+        @if (searchResults && searchResults[2].length) {
+            <div class="instruments-results">
+                <h2>Instruments</h2>
+                <div>
+                    @for (instrument of searchResults[2]; track $index) {
+                        <a (click)="closeAll()" [routerLink]="['/scores', {instrument:instrument.instrument.instrumentTag}]">{{instrument.instrument.instrumentName}} ({{instrument.nb}})</a>
+                    }
+                </div>
             </div>
-        </div>
-        <div class="composer-results" *ngIf="searchResults && searchResults[3].length">
-            <h2>Compositeurs</h2>
-            <div>
-                <a (click)="closeAll()" [routerLink]="['/scores', {composer:composer.name}]" *ngFor="let composer of searchResults[3]">{{composer.name}} ({{composer.nb}})</a>
+        }
+        @if (searchResults && searchResults[3].length) {
+            <div class="composer-results">
+                <h2>Compositeurs</h2>
+                <div>
+                    @for (composer of searchResults[3]; track $index) {
+                        <a (click)="closeAll()" [routerLink]="['/scores', {composer:composer.name}]">{{composer.name}} ({{composer.nb}})</a>
+                    }
+                </div>
             </div>
-        </div>
-        <div class="tag-results" *ngIf="searchResults && searchResults[4].length">
-            <h2>Mots-clés</h2>
-            <div>
-                <a (click)="closeAll()" [routerLink]="['/scores', {tag:tag.word}]" *ngFor="let tag of searchResults[4]">{{tag.word}} ({{tag.nb}})</a>
+        }
+        @if (searchResults && searchResults[4].length) {
+            <div class="tag-results">
+                <h2>Mots-clés</h2>
+                <div>
+                    @for (tag of searchResults[4]; track $index) {
+                        <a (click)="closeAll()" [routerLink]="['/scores', {tag:tag.word}]">{{tag.word}} ({{tag.nb}})</a>
+                    }
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>

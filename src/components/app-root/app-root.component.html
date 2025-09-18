@@ -10,6 +10,10 @@
         <li><a routerLink="/contact">Contact</a></li>
     </ul>
 </footer>
-<ul *ngIf="errorMessages.length">
-    <li *ngFor="let error of errorMessages">{{ error }}</li>
-</ul>
+@if (errorMessages.length) {
+    <ul class="errors">
+        @for (e of errorMessages; track $index) {
+            <li>{{e}}</li>
+        }
+    </ul>
+}

@@ -1,65 +1,97 @@
-<div class="img-panel" *ngIf="imageUrl" [style.background-image]="'url(' + imageUrl + ')'">
-    <div>
-        <h3>{{pageTitle}}</h3>
+@if (imageUrl) {
+    <div class="img-panel" [style.background-image]="'url(' + imageUrl + ')'">
+        <div>
+            <h3>{{pageTitle}}</h3>
+        </div>
     </div>
-</div>
-<form *ngIf="searching">
-    <label>
-        <span *ngIf="!title">Titre</span>
-        <input type="text" [(ngModel)]="title" name="title" (keyup)="search()" />
-    </label>
-    <label>
-        <span *ngIf="!bandTag">Formation</span>
-        <select *ngIf="bands" name="band" [(ngModel)]="bandTag" (change)="changeBand()">
-            <option></option>
-            <option *ngFor="let band of bands" [value]="band.tag">{{band.title}}</option>
-        </select>
-    </label>
-    <div class="composer">
+}
+@if (searching) {
+    <form>
         <label>
-            <span *ngIf="!composer">Compositeur</span>
-            <select name="composer" [(ngModel)]="composer" (change)="search()">
-                <option></option>
-                <option *ngFor="let comp of composers" [value]="comp.name">{{comp.name}}</option>
-            </select>
+            @if (!title) {
+                <span>Titre</span>
+            }
+            <input type="text" [(ngModel)]="title" name="title" (keyup)="search()" />
         </label>
-    </div>
-    <div *ngIf="instruments" class="instrument-picker">
         <label>
-            <span>Instruments</span>
-            <select name="instrument-picker" #instrumentPicker (change)="pickInstrument($event, instrumentPicker.value)">
-                <option></option>
-                <option *ngFor="let instr of instruments" [value]="instr | json">{{instr.instrumentName}}</option>
-            </select>
+            @if (!bandTag) {
+                <span>Formation</span>
+            }
+            @if (bands) {
+                <select name="band" [(ngModel)]="bandTag" (change)="changeBand()">
+                    <option></option>
+                    @for (band of bands; track $index) {
+                        <option [value]="band.tag">{{band.title}}</option>
+                    }
+                </select>
+            }
         </label>
-        <app-instrument-icons
-            *ngIf="pickedInstruments"
-            [parts]="pickedInstruments"
-            [clickable]="true"
-            [deletable]="true"
-            [full-score]="false"
-            (onInstrumentClicked)="unpickInstrument($event)"></app-instrument-icons>
-    </div>
-</form>
-<div *ngIf="results" class="search-results">
-    <div class="results-title" *ngIf="searching">{{results.length + ' résultat' + (results.length > 1 ? 's' : '')}}</div>
-    <ng-container *ngFor="let r of results">
-        <div class="scholar-year" *ngIf="yeared && displayScholarYear(r)"><span [title]="'Durée du programme : ' + durationsPerYear[r.scholarYear]">{{year}}</span></div>
-        <a [routerLink]="'/score/' + r.tag">
-            <app-fav-star *ngIf="r.note == 5"></app-fav-star>
-            <div class="score-header">
-                <div class="score-header-bg" [style.background-image]="'url(' + getImageUrl(r) + ')'"></div>
-                <div class="titles">
-                    <h3>{{r.title}}</h3>
-                    <h4>{{r.from}}</h4>
+        <div class="composer">
+            <label>
+                @if (!composer) {
+                    <span>Compositeur</span>
+                }
+                <select name="composer" [(ngModel)]="composer" (change)="search()">
+                    <option></option>
+                    @for (comp of composers; track $index) {
+                        <option [value]="comp.name">{{comp.name}}</option>
+                    }
+                </select>
+            </label>
+        </div>
+        @if (instruments) {
+            <div class="instrument-picker">
+                <label>
+                    <span>Instruments</span>
+                    <select name="instrument-picker" #instrumentPicker (change)="pickInstrument($event, instrumentPicker.value)">
+                        <option></option>
+                        @for (instr of instruments; track $index) {
+                            <option [value]="instr | json">{{instr.instrumentName}}</option>
+                        }
+                    </select>
+                </label>
+                @if (pickedInstruments) {
+                    <app-instrument-icons
+                        [parts]="pickedInstruments"
+                        [clickable]="true"
+                        [deletable]="true"
+                        [full-score]="false"
+                        (onInstrumentClicked)="unpickInstrument($event)"></app-instrument-icons>
+                }
+            </div>
+        }
+    </form>
+}
+@if (results) {
+    <div class="search-results">
+        @if (searching) {
+            <div class="results-title">{{results.length + ' résultat' + (results.length > 1 ? 's' : '')}}</div>
+        }
+        @for (r of results; track $index) {
+            @if (yeared && displayScholarYear(r)) {
+                <div class="scholar-year"><span [title]="'Durée du programme : ' + durationsPerYear[r.scholarYear]">{{year}}</span></div>
+            }
+            <a [routerLink]="'/score/' + r.tag">
+                @if (r.note == 5) {
+                    <app-fav-star></app-fav-star>
+                }
+                <div class="score-header">
+                    <div class="score-header-bg" [style.background-image]="'url(' + getImageUrl(r) + ')'"></div>
+                    <div class="titles">
+                        <h3>{{r.title}}</h3>
+                        <h4>{{r.from}}</h4>
+                    </div>
                 </div>
-            </div>
-            <div class="band-info" *ngIf="!bandTag">{{r.band.title}}</div>
-            <div class="band-info" *ngIf="bandTag">{{r.parts.length}} parts</div>
-            <div class="mark-date">
-                <span class="date">{{r.created | datefr: 'MMMM y'}}</span>
-                <app-star-mark [mark]="r.note"></app-star-mark>
-            </div>
-        </a>
-    </ng-container>
-</div>
+                @if (!bandTag) {
+                    <div class="band-info">{{r.band.title}}</div>
+                } @else {
+                    <div class="band-info">{{r.parts.length}} parts</div>
+                }
+                <div class="mark-date">
+                    <span class="date">{{r.created | datefr: 'MMMM y'}}</span>
+                    <app-star-mark [mark]="r.note"></app-star-mark>
+                </div>
+            </a>
+        }
+    </div>
+}

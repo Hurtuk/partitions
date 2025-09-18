@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterOutlet, RouterLink } from '@angular/router';
 
 import { ErrorService } from '../../services/error.service';
+import { HeaderComponent } from '../header/header.component';
+import { SideNavComponent } from '../side-nav/side-nav.component';
 
 declare let ga: Function;
 
@@ -9,8 +11,9 @@ declare let ga: Function;
     selector: 'app-root',
     templateUrl: 'app-root.component.html',
     styleUrls: ['./app-root.component.scss',
-                './app-root.medium.component.scss',
-                './app-root.large.component.scss']
+        './app-root.medium.component.scss',
+        './app-root.large.component.scss'],
+    imports: [HeaderComponent, SideNavComponent, RouterOutlet, RouterLink]
 })
 
 export class AppRootComponent implements OnInit {

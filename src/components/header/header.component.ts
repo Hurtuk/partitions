@@ -8,16 +8,19 @@ import { MenuService } from '../../services/menu.service';
 import { ScoreService } from '../../services/score.service';
 import { ScoreMetadataService } from '../../services/score-metadata.service';
 import { BandService } from '../../services/band.service';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss',
-                './header.medium.component.scss',
-                './header.large.component.scss'],
+        './header.medium.component.scss',
+        './header.large.component.scss'],
     providers: [
         MenuService
-    ]
+    ],
+    imports: [FormsModule, RouterLink]
 })
 
 export class HeaderComponent implements OnInit {

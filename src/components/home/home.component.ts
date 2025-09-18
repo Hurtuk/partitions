@@ -5,14 +5,18 @@ import { Score } from "../../model/score";
 import { ScoreMetadataService } from "../../services/score-metadata.service";
 import { NewsService } from '../../services/news.service';
 import { Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
+import { InstrumentIconsComponent } from '../instrument-icons/instrument-icons.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss',
-                'home.medium.component.scss',
-                'home.large.component.scss'],
-    encapsulation: ViewEncapsulation.None
+        'home.medium.component.scss',
+        'home.large.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [RouterLink, InstrumentIconsComponent, AsyncPipe]
 })
 
 export class HomeComponent implements OnInit {

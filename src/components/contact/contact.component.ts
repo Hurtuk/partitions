@@ -4,8 +4,9 @@ import { Component } from '@angular/core';
     selector: 'app-contact',
     templateUrl: 'contact.component.html',
     styleUrls: ['contact.component.scss',
-                'contact.medium.component.scss',
-                'contact.large.component.scss']
+        'contact.medium.component.scss',
+        'contact.large.component.scss'],
+    standalone: false
 })
 
 export class ContactComponent {

@@ -6,7 +6,7 @@ const MONTHS_LONG = [null,
     "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
 @Pipe({
-    name: 'datefr',
+    name: 'datefr'
 })
 export class DateFrPipe implements PipeTransform {
 

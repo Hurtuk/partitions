@@ -1,25 +1,36 @@
-<div class="img-panel" *ngIf="imageUrl" [style.background-image]="'url(' + imageUrl + ')'">
-    <app-fav-star *ngIf="score?.favorite"></app-fav-star>
-    <div>
-        <h4 *ngIf="score?.from != score?.title">{{score?.from}}</h4>
-        <h3>{{score?.title}}</h3>
+@if (imageUrl) {
+    <div class="img-panel" [style.background-image]="'url(' + imageUrl + ')'">
+        @if (score?.favorite) {
+            <app-fav-star></app-fav-star>
+        }
+        <div>
+            @if (score?.from != score?.title) {
+                <h4>{{score?.from}}</h4>
+            }
+            <h3>{{score?.title}}</h3>
+        </div>
     </div>
-</div>
+}
 <div class="score-content" #scorecontent>
     <div class="score-data" [class.fixed]="fixed && selectedPart">
         <div class="fieldset technical-data">
             <div class="legend">Fiche technique</div>
-            <div class="composer" *ngIf="score?.by">Composé par {{score?.by}}</div>
+            @if (score?.by) {
+                <div class="composer">Composé par {{score?.by}}</div>
+            }
             <div class="length">{{audioLength}}</div>
             <div class="band">
                 <a [routerLink]="'/scores/' + score?.band.tag">{{score?.band.title}}</a>
             </div>
-            <app-star-mark *ngIf="score?.note" [mark]="score.note"></app-star-mark>
+            @if (score?.note) {
+                <app-star-mark [mark]="score.note"></app-star-mark>
+            }
             <div class="created">Créé le {{score?.created | date:'dd/MM/y'}}</div>
             <div class="tagsbox">
                 Tags : 
-                <a *ngFor="let tag of score?.tags"
-                    [routerLink]="['/scores', {tag:tag}]">{{tag}}</a>
+                @for (tag of score?.tags; track $index) {
+                    <a [routerLink]="['/scores', {tag:tag}]">{{tag}}</a>
+                }
             </div>
         </div>
         <div class="fieldset listen">
@@ -31,19 +42,23 @@
             <app-download-buttons [score]="score"></app-download-buttons>
         </div>
 
-        <div class="fieldset youtube" *ngIf="score?.youtube">
-            <div class="legend">Live</div>
-            <iframe [src]="('https://www.youtube.com/embed/' + score?.youtube) | safe:'resourceUrl'" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
-        </div>
+        @if (score?.youtube) {
+            <div class="fieldset youtube">
+                <div class="legend">Live</div>
+                <iframe [src]="('https://www.youtube.com/embed/' + score?.youtube) | safe:'resourceUrl'" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        }
 
         <div class="fieldset comment">
             <div class="legend">Commentaire</div>
             <p [innerHTML]="score?.comment"></p>
         </div>
-        <div class="fieldset share">
+        <!--<div class="fieldset share">
             <div class="legend">Partager</div>
-            <app-share-buttons *ngIf="currentUrl" [pageUrl]="currentUrl" [imageUrl]="imageUrl" [text]="score?.title + ' pour ' + score?.band.title"></app-share-buttons>
-        </div>
+            @if (currentUrl) {
+                <app-share-buttons [pageUrl]="currentUrl" [imageUrl]="imageUrl" [text]="score?.title + ' pour ' + score?.band.title"></app-share-buttons>
+            }
+        </div>-->
     </div>
     <div class="simili-col"></div>
     <div class="score-parts">
@@ -51,15 +66,21 @@
                         [clickable]="true"
                         [full-score]="true"
                         (onInstrumentClicked)="displayScore($event)"></app-instrument-icons>
-        <p class="score-indic" *ngIf="!isIE && !loading">Cliquez sur un instrument pour ouvrir la partition</p>
-        <p *ngIf="!isIE" class="falsy-panel"
-            [style.height]="similiHeight"
-            [class.visible]="loading">Chargement...</p>
+        @if (!isIE && !loading) {
+            <p class="score-indic">Cliquez sur un instrument pour ouvrir la partition</p>
+        }
+        @if (!isIE) {
+            <p class="falsy-panel"
+                [style.height]="similiHeight"
+                [class.visible]="loading">Chargement...</p>
+        }
         <div class="score-container">
-            <div class="actions" *ngIf="partUrl && !loading">
-                <button class="print" (click)="print()"></button>
-                <button class="save" (click)="download()"></button>
-            </div>
+            @if (partUrl && !loading) {
+                <div class="actions">
+                    <button class="print" (click)="print()"></button>
+                    <button class="save" (click)="download()"></button>
+                </div>
+            }
             <pdf-viewer #pdfViewer
                         [src]="partUrlPdfViewer"
                         [show-all]="true"

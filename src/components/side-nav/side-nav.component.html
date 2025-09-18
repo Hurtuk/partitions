@@ -7,9 +7,11 @@
         <a (click)="closeAll()" href="https://twitter.com/Louiecinephile" class="side-twitter"></a>
     </div>
     <ul class="side-content">
-        <li *ngFor="let item of menu" [class]="'menu-' + item.pathArg">
-            <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg">{{item.title}}</a>
-        </li>
+        @for (item of menu; track $index) {
+            <li [class]="'menu-' + item.pathArg">
+                <a (click)="closeAll()" [routerLink]="'/scores/' + item.pathArg">{{item.title}}</a>
+            </li>
+        }
     </ul>
     <a routerLink="/contact">Contact</a>
 </nav>
